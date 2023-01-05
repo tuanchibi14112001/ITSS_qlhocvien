@@ -24,7 +24,7 @@ public class ClassTableModel {
         int rows = listItem.size();
         HocVien hoc_vien = null;
         if (rows > 0) {
-            for (int i = 0; i <= rows; i++) {
+            for (int i = 0; i < rows; i++) {
                 hoc_vien = listItem.get(i);
                 obj = new Object[cols];
                 obj[0] = hoc_vien.getMa_hoc_vien();
