@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package quanlyhocvien.view;
+
+import quanlyhocvien.controller.HocVienController;
 
 /**
  *
@@ -15,6 +14,8 @@ public class HocVienJpanel extends javax.swing.JPanel {
      */
     public HocVienJpanel() {
         initComponents();
+        HocVienController hoc_vien_controller = new HocVienController(jpn_view, btn_add, jtf_search);
+        hoc_vien_controller.setDatatoTable();
     }
 
     /**
@@ -40,7 +41,7 @@ public class HocVienJpanel extends javax.swing.JPanel {
             }
         });
 
-        jtf_search.setFont(new java.awt.Font("Gargi", 0, 14)); // NOI18N
+        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jpn_viewLayout = new javax.swing.GroupLayout(jpn_view);
         jpn_view.setLayout(jpn_viewLayout);
@@ -50,7 +51,7 @@ public class HocVienJpanel extends javax.swing.JPanel {
         );
         jpn_viewLayout.setVerticalGroup(
             jpn_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addGap(0, 286, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
@@ -61,10 +62,7 @@ public class HocVienJpanel extends javax.swing.JPanel {
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
                 .addComponent(btn_add))
-            .addGroup(jpn_rootLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpn_rootLayout.setVerticalGroup(
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
