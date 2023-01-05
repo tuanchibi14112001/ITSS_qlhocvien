@@ -30,9 +30,9 @@ public class ClassTableModel {
                 obj[0] = hoc_vien.getMa_hoc_vien();
                 obj[1] = i + 1;
                 obj[2] = hoc_vien.getHo_ten();
-                if (hoc_vien.getGioi_tinh() == 0) {
+                if (hoc_vien.getGioi_tinh() == 1) {
                     obj[3] = "Nam";
-                } else if (hoc_vien.getGioi_tinh() == 1) {
+                } else if (hoc_vien.getGioi_tinh() == 0) {
                     obj[3] = "Nữ";
                 } else {
                     obj[3] = "Khác";
