@@ -11,24 +11,22 @@ public class HocVien {
     private int ma_hoc_vien;
     private String ho_ten;
     private Date ngay_sinh;
-    private int gioi_tinh;
+    private int gioi_tinh; // 1: Nam 0: Nu 3: Khac
     private String so_dien_thoai;
     private String email;
-    private int tinh_trang;
 
     public HocVien() {
     }
     
     
 
-    public HocVien(int ma_hoc_vien, String ho_ten, Date ngay_sinh, int gioi_tinh, String so_dien_thoai, String email, int tinh_trang) {
+    public HocVien(int ma_hoc_vien, String ho_ten, Date ngay_sinh, int gioi_tinh, String so_dien_thoai, String email) {
         this.ma_hoc_vien = ma_hoc_vien;
         this.ho_ten = ho_ten;
         this.ngay_sinh = ngay_sinh;
         this.gioi_tinh = gioi_tinh;
         this.so_dien_thoai = so_dien_thoai;
         this.email = email;
-        this.tinh_trang = tinh_trang;
     }
 
     public int getMa_hoc_vien() {
@@ -79,17 +77,13 @@ public class HocVien {
         this.email = email;
     }
 
-    public int getTinh_trang() {
-        return tinh_trang;
-    }
+    
 
-    public void setTinh_trang(int tinh_trang) {
-        this.tinh_trang = tinh_trang;
-    }
+   
 
     @Override
     public String toString() {
-        return "\nHocVien{" + "ma_hoc_vien=" + ma_hoc_vien + ", ho_ten=" + ho_ten + ", ngay_sinh=" + ngay_sinh + ", gioi_tinh=" + gioi_tinh + ", so_dien_thoai=" + so_dien_thoai + ", email=" + email + ", tinh_trang=" + tinh_trang + '}';
+        return "\nHocVien{" + "ma_hoc_vien=" + ma_hoc_vien + ", ho_ten=" + ho_ten + ", ngay_sinh=" + ngay_sinh + ", gioi_tinh=" + gioi_tinh + ", so_dien_thoai=" + so_dien_thoai + ", email=" + email +  '}';
     }
     
     

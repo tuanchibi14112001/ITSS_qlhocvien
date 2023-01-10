@@ -3,8 +3,11 @@ package quanlyhocvien.controller;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,6 +22,7 @@ import quanlyhocvien.model.HocVien;
 import quanlyhocvien.service.HocVienService;
 import quanlyhocvien.service.HocVienServiceImpl;
 import quanlyhocvien.utility.ClassTableModel;
+import quanlyhocvien.view.HocVienInfoJFrame;
 
 /**
  *
@@ -31,7 +35,7 @@ public class HocVienController {
     private JTextField jtf_search;
     private TableRowSorter<TableModel> rowSorter = null;//sap xep hang
     private HocVienService hoc_vien_service = null;
-    private String[] listColumn = {"ID", "STT", "Họ tên", "Giới tính", "Ngày sinh", "Email", "Số điện thoại", "Tình trạng"};
+    private String[] listColumn = {"ID", "STT", "Họ tên", "Giới tính", "Ngày sinh", "Email", "Số điện thoại"};
 
     public HocVienController() {
     }
@@ -92,6 +96,36 @@ public class HocVienController {
             public void changedUpdate(DocumentEvent de) {
             }
         });
+        //xu li click
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() >1 && table.getSelectedRow()!=-1){//click 2 lan va co hang trong bang
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    int selectedRowIndex = table.getSelectedRow();
+                    selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+                    //System.out.println(selectedRowIndex);
+                    
+                    HocVien hoc_vien  =new HocVien();
+//                    hoc_vien= hoc_vien_service.get((int)model.getValueAt(selectedRowIndex, 0));
+                    
+                    hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
+                    
+                    HocVienInfoJFrame frame = new HocVienInfoJFrame(hoc_vien);
+                    frame.setTitle("Thông tin chi tiết");
+                    frame.setResizable(false);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                    
+                   
+                }
+            }
+            
+            
+            
+        });
+        
+        
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));
         table.setRowHeight(50);

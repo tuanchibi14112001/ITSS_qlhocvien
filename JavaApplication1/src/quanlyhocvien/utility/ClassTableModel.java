@@ -40,7 +40,7 @@ public class ClassTableModel {
                 obj[4] = hoc_vien.getNgay_sinh();
                 obj[5] = hoc_vien.getEmail();
                 obj[6] = hoc_vien.getSo_dien_thoai();
-                obj[7] = hoc_vien.getTinh_trang();
+//                obj[7] = hoc_vien.getTinh_trang();
                 
                 dtm.addRow(obj);
             }
