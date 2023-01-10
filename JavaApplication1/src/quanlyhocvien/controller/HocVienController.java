@@ -49,6 +49,7 @@ public class HocVienController {
         JTable table = new JTable(model);
         rowSorter = new TableRowSorter<>(table.getModel());
         table.setRowSorter(rowSorter);
+
         jtf_search.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent de) {
@@ -57,7 +58,15 @@ public class HocVienController {
                     rowSorter.setRowFilter(null);
                 } else {
 
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                    rowSorter.setRowFilter(new RowFilter() {
+                        @Override
+                        public boolean include(RowFilter.Entry entry) {
+                            String name = entry.getStringValue(2);
+                            String text = jtf_search.getText();
+                            return name.toLowerCase().contains(text.toLowerCase());
+
+                        }
+                    });
                 }
             }
 
@@ -68,7 +77,14 @@ public class HocVienController {
                     rowSorter.setRowFilter(null);
                 } else {
 
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                    rowSorter.setRowFilter(new RowFilter() {
+                        @Override
+                        public boolean include(RowFilter.Entry entry) {
+                            String name = entry.getStringValue(2);
+                            String text = jtf_search.getText();
+                            return name.toLowerCase().contains(text.toLowerCase());
+                        }
+                    });
                 }
             }
 
@@ -86,9 +102,9 @@ public class HocVienController {
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
         scroll.setPreferredSize(new Dimension(1350, 400));
-        
+
         jpn_view.removeAll();
-        jpn_view.setLayout(new CardLayout());     
+        jpn_view.setLayout(new CardLayout());
         jpn_view.add(scroll);
         jpn_view.validate();//xac nhan
         jpn_view.repaint();
