@@ -23,6 +23,11 @@ public class HocVienServiceImpl implements HocVienService{
     public List<HocVien> getList() {
         return hoc_vien_dao.getList();
     }
+
+    @Override
+    public HocVien getHocVienID(int ma_hoc_vien) {
+        return hoc_vien_dao.getHocVienID(ma_hoc_vien);
+    }
     
     
 }

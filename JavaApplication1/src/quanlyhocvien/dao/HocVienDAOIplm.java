@@ -49,5 +49,32 @@ public class HocVienDAOIplm implements HocVienDAO {
 //        HocVienDAO hoc_vien_dao = new HocVienDAOIplm();
 //        System.out.println(hoc_vien_dao.getList());
 //    }
+    @Override
+    public HocVien getHocVienID(int ma_hoc_vien) {
+        try {
+            Connection conn = DBConnect.getConnection();
+            HocVien hoc_vien = new HocVien();
+
+            String sql = "SELECT * FROM hoc_vien WHERE ma_hoc_vien = ?";
+            PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
+            ps.setInt(1, ma_hoc_vien);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                hoc_vien.setMa_hoc_vien(rs.getInt("ma_hoc_vien"));
+                hoc_vien.setHo_ten(rs.getString("ho_ten"));
+                hoc_vien.setNgay_sinh(rs.getDate("ngay_sinh"));
+                hoc_vien.setGioi_tinh(rs.getInt("gioi_tinh"));
+                hoc_vien.setSo_dien_thoai(rs.getString("so_dien_thoai"));
+                hoc_vien.setEmail(rs.getString("email"));
+//                hoc_vien.setTinh_trang(rs.getInt("tinh_trang"));
+            }
+            ps.close();
+            conn.close();
+            return hoc_vien;
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAOIplm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 }

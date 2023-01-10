@@ -1,5 +1,6 @@
 package quanlyhocvien.utility;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import quanlyhocvien.model.HocVien;
@@ -37,7 +38,8 @@ public class ClassTableModel {
                 } else {
                     obj[3] = "Khác";
                 }
-                obj[4] = hoc_vien.getNgay_sinh();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                obj[4] = formatter.format(hoc_vien.getNgay_sinh());
                 obj[5] = hoc_vien.getEmail();
                 obj[6] = hoc_vien.getSo_dien_thoai();
 //                obj[7] = hoc_vien.getTinh_trang();

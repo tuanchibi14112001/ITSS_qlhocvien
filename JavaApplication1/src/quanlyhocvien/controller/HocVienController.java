@@ -100,32 +100,28 @@ public class HocVienController {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(e.getClickCount() >1 && table.getSelectedRow()!=-1){//click 2 lan va co hang trong bang
+                if (e.getClickCount() > 1 && table.getSelectedRow() != -1) {//click 2 lan va co hang trong bang
                     DefaultTableModel model = (DefaultTableModel) table.getModel();
                     int selectedRowIndex = table.getSelectedRow();
                     selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
                     //System.out.println(selectedRowIndex);
-                    
-                    HocVien hoc_vien  =new HocVien();
-//                    hoc_vien= hoc_vien_service.get((int)model.getValueAt(selectedRowIndex, 0));
-                    
-                    hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-                    
+
+                    HocVien hoc_vien = new HocVien();
+                    hoc_vien= hoc_vien_service.getHocVienID((int)model.getValueAt(selectedRowIndex, 0));
+
+                    //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
+
                     HocVienInfoJFrame frame = new HocVienInfoJFrame(hoc_vien);
                     frame.setTitle("Thông tin chi tiết");
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
-                    
-                   
+
                 }
             }
-            
-            
-            
+
         });
-        
-        
+
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));
         table.setRowHeight(50);
