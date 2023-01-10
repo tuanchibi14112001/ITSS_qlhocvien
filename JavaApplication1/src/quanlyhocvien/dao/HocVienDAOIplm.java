@@ -20,7 +20,7 @@ public class HocVienDAOIplm implements HocVienDAO {
     public List<HocVien> getList() {
         try {
             Connection conn = DBConnect.getConnection();
-            String sql = "SELECT * FROM hoc_vien";
+            String sql = "SELECT * FROM hoc_vien ORDER BY ma_hoc_vien DESC";
             List<HocVien> list = new ArrayList<>();
             PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
