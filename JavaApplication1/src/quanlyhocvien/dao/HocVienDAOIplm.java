@@ -32,7 +32,7 @@ public class HocVienDAOIplm implements HocVienDAO {
                 hoc_vien.setGioi_tinh(rs.getInt("gioi_tinh"));
                 hoc_vien.setSo_dien_thoai(rs.getString("so_dien_thoai"));
                 hoc_vien.setEmail(rs.getString("email"));
-                hoc_vien.setTinh_trang(rs.getInt("tinh_trang"));
+//                hoc_vien.setTinh_trang(rs.getInt("tinh_trang"));
 
                 list.add(hoc_vien);
             }
