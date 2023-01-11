@@ -33,7 +33,7 @@ public class HocVienDAOIplm implements HocVienDAO {
                 hoc_vien.setGioi_tinh(rs.getInt("gioi_tinh"));
                 hoc_vien.setSo_dien_thoai(rs.getString("so_dien_thoai"));
                 hoc_vien.setEmail(rs.getString("email"));
-                hoc_vien.setTinh_trang(rs.getInt("tinh_trang"));
+                hoc_vien.setTinh_trang(rs.getBoolean("tinh_trang"));
 
                 list.add(hoc_vien);
             }
@@ -66,7 +66,8 @@ public class HocVienDAOIplm implements HocVienDAO {
                 hoc_vien.setGioi_tinh(rs.getInt("gioi_tinh"));
                 hoc_vien.setSo_dien_thoai(rs.getString("so_dien_thoai"));
                 hoc_vien.setEmail(rs.getString("email"));
-//                hoc_vien.setTinh_trang(rs.getInt("tinh_trang"));
+                hoc_vien.setTinh_trang(rs.getBoolean("tinh_trang"));
+
             }
             ps.close();
             conn.close();
@@ -81,7 +82,7 @@ public class HocVienDAOIplm implements HocVienDAO {
     public int createOrUpdate(HocVien hoc_vien) {
         try {
             Connection conn = DBConnect.getConnection();
-            String sql = "INSERT INTO hoc_vien(ma_hoc_vien,ho_ten, ngay_sinh, gioi_tinh, so_dien_thoai, email) VALUES(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE ma_hoc_vien = VALUES(ma_hoc_vien),ho_ten = VALUES(ho_ten), ngay_sinh = VALUES(ngay_sinh), gioi_tinh = VALUES(gioi_tinh), so_dien_thoai = VALUES(so_dien_thoai), email = VALUES(email);";
+            String sql = "INSERT INTO hoc_vien(ma_hoc_vien,ho_ten, ngay_sinh, gioi_tinh, so_dien_thoai, email,tinh_trang) VALUES(?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE ma_hoc_vien = VALUES(ma_hoc_vien),ho_ten = VALUES(ho_ten), ngay_sinh = VALUES(ngay_sinh), gioi_tinh = VALUES(gioi_tinh), so_dien_thoai = VALUES(so_dien_thoai), email = VALUES(email), tinh_trang = VALUES(tinh_trang);";
             PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, hoc_vien.getMa_hoc_vien());
             ps.setString(2, hoc_vien.getHo_ten());
@@ -89,7 +90,7 @@ public class HocVienDAOIplm implements HocVienDAO {
             ps.setInt(4, hoc_vien.getGioi_tinh());
             ps.setString(5, hoc_vien.getSo_dien_thoai());
             ps.setString(6, hoc_vien.getEmail());
-            
+            ps.setBoolean(7, hoc_vien.isTinh_trang());
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             int generatedKey = 0;

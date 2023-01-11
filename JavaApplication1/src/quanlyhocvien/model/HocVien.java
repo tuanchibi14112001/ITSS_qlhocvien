@@ -14,18 +14,11 @@ public class HocVien {
     private int gioi_tinh; // 1: Nam 0: Nu 3: Khac
     private String so_dien_thoai;
     private String email;
-    private int tinh_trang;
+    private boolean tinh_trang;
 
-    public HocVien(int ma_hoc_vien, String ho_ten, Date ngay_sinh, int gioi_tinh, String so_dien_thoai, String email) {
-        this.ma_hoc_vien = ma_hoc_vien;
-        this.ho_ten = ho_ten;
-        this.ngay_sinh = ngay_sinh;
-        this.gioi_tinh = gioi_tinh;
-        this.so_dien_thoai = so_dien_thoai;
-        this.email = email;
-    }
+    
 
-    public HocVien(int ma_hoc_vien, String ho_ten, Date ngay_sinh, int gioi_tinh, String so_dien_thoai, String email, int tinh_trang) {
+    public HocVien(int ma_hoc_vien, String ho_ten, Date ngay_sinh, int gioi_tinh, String so_dien_thoai, String email, boolean tinh_trang) {
         this.ma_hoc_vien = ma_hoc_vien;
         this.ho_ten = ho_ten;
         this.ngay_sinh = ngay_sinh;
@@ -34,7 +27,9 @@ public class HocVien {
         this.email = email;
         this.tinh_trang = tinh_trang;
     }
-    
+     public HocVien() {
+         this.tinh_trang = true;
+    }
 
     public int getMa_hoc_vien() {
         return ma_hoc_vien;
@@ -84,20 +79,21 @@ public class HocVien {
         this.email = email;
     }
 
-    public int getTinh_trang() {
+    public boolean isTinh_trang() {
         return tinh_trang;
     }
 
-    public void setTinh_trang(int tinh_trang) {
+    public void setTinh_trang(boolean tinh_trang) {
         this.tinh_trang = tinh_trang;
     }
 
-    public HocVien() {
-    }
+   
+
+   
 
     @Override
     public String toString() {
-        return "\nHocVien{" + "ma_hoc_vien=" + ma_hoc_vien + ", ho_ten=" + ho_ten + ", ngay_sinh=" + ngay_sinh + ", gioi_tinh=" + gioi_tinh + ", so_dien_thoai=" + so_dien_thoai + ", email=" + email + '}';
+        return "\nHocVien{" + "ma_hoc_vien=" + ma_hoc_vien + ", tinh_trang"+tinh_trang+'}';
     }
 
 }

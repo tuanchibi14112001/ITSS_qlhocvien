@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -28,13 +29,15 @@ public class HocVienInfoController {
     private JTextField jtf_phone;
     private JTextField jtf_email;
     private JLabel jlb_msg;
+    private JCheckBox jcb_tinhtrang;
     private HocVien hoc_vien;
     private HocVienService hoc_vien_service = null;
 
     public HocVienInfoController() {
     }
 
-    public HocVienInfoController(JButton btn_submit, JTextField jtf_hoten, JDateChooser jdc_ngaysinh, JRadioButton jrb_nam, JRadioButton jrb_nu, JRadioButton jrb_khac, JTextField jtf_phone, JTextField jtf_email, JLabel jlb_msg) {
+    public HocVienInfoController(JButton btn_submit, JTextField jtf_hoten, JDateChooser jdc_ngaysinh, 
+            JRadioButton jrb_nam, JRadioButton jrb_nu, JRadioButton jrb_khac, JTextField jtf_phone, JTextField jtf_email, JLabel jlb_msg, JCheckBox jcb_tinhtrang) {
         this.btn_submit = btn_submit;
         this.jtf_hoten = jtf_hoten;
         this.jdc_ngaysinh = jdc_ngaysinh;
@@ -44,6 +47,7 @@ public class HocVienInfoController {
         this.jtf_phone = jtf_phone;
         this.jtf_email = jtf_email;
         this.jlb_msg = jlb_msg;
+        this.jcb_tinhtrang = jcb_tinhtrang;
         this.hoc_vien_service = new HocVienServiceImpl();
 
     }
@@ -61,6 +65,7 @@ public class HocVienInfoController {
         }
         jtf_phone.setText(hoc_vien.getSo_dien_thoai());
         jtf_email.setText(hoc_vien.getEmail());
+        jcb_tinhtrang.setSelected(hoc_vien.isTinh_trang());
 
     }
 
@@ -75,7 +80,7 @@ public class HocVienInfoController {
                     hoc_vien.setHo_ten(jtf_hoten.getText().trim());
                     hoc_vien.setSo_dien_thoai(jtf_phone.getText().trim());
                     hoc_vien.setEmail(jtf_email.getText().trim());
-
+                    hoc_vien.setTinh_trang(jcb_tinhtrang.isSelected());
                     hoc_vien.setNgay_sinh(jdc_ngaysinh.getDate());
                     if (jrb_nu.isSelected()) {
                         hoc_vien.setGioi_tinh(0);
@@ -88,10 +93,11 @@ public class HocVienInfoController {
                         int lastId = hoc_vien_service.createOrUpdate(hoc_vien);
                         if (lastId != 0) {
                             hoc_vien.setMa_hoc_vien(lastId);
-
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
+                            
                         } else {
                             jlb_msg.setText("Có lỗi xảy ra, vui lòng thử lại!");
+                            
                         }
                     }
 
