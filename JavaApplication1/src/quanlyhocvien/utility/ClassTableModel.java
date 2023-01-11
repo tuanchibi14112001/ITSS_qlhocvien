@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import quanlyhocvien.model.HocVien;
+import quanlyhocvien.model.KhoaHoc;
+import quanlyhocvien.model.LopHoc;
 
 /**
  *
@@ -43,6 +45,70 @@ public class ClassTableModel {
                 obj[5] = hoc_vien.getEmail();
                 obj[6] = hoc_vien.getSo_dien_thoai();
 //                obj[7] = hoc_vien.getTinh_trang();
+                
+                dtm.addRow(obj);
+            }
+        }
+
+        return dtm;
+    }
+        
+        public DefaultTableModel setTableKhoaHoc(List<KhoaHoc> listItem, String[] listColumn) {
+        DefaultTableModel dtm = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        int cols = listColumn.length;
+        Object[] obj = null;
+        int rows = listItem.size();
+        KhoaHoc khoa_hoc = null;
+        if (rows > 0) {
+            for (int i = 0; i < rows; i++) {
+                khoa_hoc = listItem.get(i);
+                obj = new Object[cols];
+                obj[0] = khoa_hoc.getMa_khoa_hoc();
+                obj[1] = i + 1;
+                obj[2] = khoa_hoc.getTen_khoa_hoc();
+                obj[3] = khoa_hoc.getTrinh_do();
+                obj[4] = khoa_hoc.getMo_ta();
+                obj[5] = khoa_hoc.getNgay_bat_dau();
+                obj[6] = khoa_hoc.getNgay_ket_thuc();
+                
+                dtm.addRow(obj);
+            }
+        }
+
+        return dtm;
+    }
+    
+    public DefaultTableModel setTableLopHoc(List<LopHoc> listItem, String[] listColumn) {
+        DefaultTableModel dtm = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        int cols = listColumn.length;
+        Object[] obj = null;
+        int rows = listItem.size();
+        LopHoc lop_hoc = null;
+        if (rows > 0) {
+            for (int i = 0; i < rows; i++) {
+                lop_hoc = listItem.get(i);
+                obj = new Object[cols];
+                obj[0] = lop_hoc.getMa_lop_hoc();
+                obj[1] = i + 1;
+                obj[2] = lop_hoc.getKhoaHoc().getTen_khoa_hoc();
+                obj[3] = lop_hoc.getLich_hoc();
+                obj[4] = lop_hoc.getTong();
+                obj[5] = lop_hoc.getKhoaHoc().getNgay_bat_dau();
+                obj[6] = lop_hoc.getKhoaHoc().getNgay_ket_thuc();
                 
                 dtm.addRow(obj);
             }
