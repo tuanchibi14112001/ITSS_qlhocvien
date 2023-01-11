@@ -16,6 +16,7 @@ public class HocVienJpanel extends javax.swing.JPanel {
         initComponents();
         HocVienController hoc_vien_controller = new HocVienController(jpn_view, btn_add, jtf_search);
         hoc_vien_controller.setDatatoTable();
+        hoc_vien_controller.setEven();
     }
 
     /**

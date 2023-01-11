@@ -1,11 +1,17 @@
 package quanlyhocvien.controller;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import quanlyhocvien.model.HocVien;
+import quanlyhocvien.service.HocVienService;
+import quanlyhocvien.service.HocVienServiceImpl;
 
 /**
  *
@@ -22,6 +28,8 @@ public class HocVienInfoController {
     private JTextField jtf_phone;
     private JTextField jtf_email;
     private JLabel jlb_msg;
+    private HocVien hoc_vien;
+    private HocVienService hoc_vien_service = null;
 
     public HocVienInfoController() {
     }
@@ -36,24 +44,86 @@ public class HocVienInfoController {
         this.jtf_phone = jtf_phone;
         this.jtf_email = jtf_email;
         this.jlb_msg = jlb_msg;
-    }
+        this.hoc_vien_service = new HocVienServiceImpl();
 
-    
+    }
 
     public void setView(HocVien hoc_vien) {
+        this.hoc_vien = hoc_vien;
         jtf_hoten.setText(hoc_vien.getHo_ten());
         jdc_ngaysinh.setDate(hoc_vien.getNgay_sinh());
-        if(hoc_vien.getGioi_tinh() == 0){
+        if (hoc_vien.getGioi_tinh() == 0) {
             jrb_nu.setSelected(true);
-        }
-        else if(hoc_vien.getGioi_tinh() == 1){
+        } else if (hoc_vien.getGioi_tinh() == 1) {
             jrb_nam.setSelected(true);
-        }
-        else
+        } else {
             jrb_khac.setSelected(true);
+        }
         jtf_phone.setText(hoc_vien.getSo_dien_thoai());
         jtf_email.setText(hoc_vien.getEmail());
-    }
-        
 
+    }
+
+    public void setEven() {
+        btn_submit.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (!checkNotNull()) {
+                    jlb_msg.setText("Vui lòng nhập thông tin bắt buộc!");
+                } else {
+                    hoc_vien.setHo_ten(jtf_hoten.getText().trim());
+                    hoc_vien.setSo_dien_thoai(jtf_phone.getText().trim());
+                    hoc_vien.setEmail(jtf_email.getText().trim());
+
+                    hoc_vien.setNgay_sinh(jdc_ngaysinh.getDate());
+                    if (jrb_nu.isSelected()) {
+                        hoc_vien.setGioi_tinh(0);
+                    } else if (jrb_nam.isSelected()) {
+                        hoc_vien.setGioi_tinh(1);
+                    } else {
+                        hoc_vien.setGioi_tinh(2);
+                    }
+                    if (showDialog()) {
+                        int lastId = hoc_vien_service.createOrUpdate(hoc_vien);
+                        if (lastId != 0) {
+                            hoc_vien.setMa_hoc_vien(lastId);
+
+                            jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
+                        } else {
+                            jlb_msg.setText("Có lỗi xảy ra, vui lòng thử lại!");
+                        }
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btn_submit.setBackground(new Color(0, 200, 83));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btn_submit.setBackground(new Color(76, 175, 80));
+            }
+
+        });
+
+    }
+
+    private boolean checkNotNull() {
+        if (jtf_hoten.getText().length() == 0 || jtf_phone.getText().length() == 0
+                || jtf_email.getText().length() == 0 || jdc_ngaysinh.getDate() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean showDialog() {
+        int dialogResult = JOptionPane.showConfirmDialog(null,
+                "Bạn muốn cập nhật dữ liệu hay không?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        return dialogResult == JOptionPane.YES_OPTION;
+    }
 }

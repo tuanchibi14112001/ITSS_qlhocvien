@@ -11,5 +11,6 @@ import quanlyhocvien.model.HocVien;
 public interface HocVienDAO {
     public List<HocVien> getList();
     public HocVien getHocVienID(int ma_hoc_vien);
+    public int createOrUpdate(HocVien hoc_vien);
     
 }

@@ -13,4 +13,6 @@ public interface HocVienService {
 
     public HocVien getHocVienID(int ma_hoc_vien);
 
+    public int createOrUpdate(HocVien hoc_vien);
+
 }

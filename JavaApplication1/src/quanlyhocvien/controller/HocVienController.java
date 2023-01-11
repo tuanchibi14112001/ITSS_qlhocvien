@@ -1,6 +1,7 @@
 package quanlyhocvien.controller;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -107,10 +108,9 @@ public class HocVienController {
                     //System.out.println(selectedRowIndex);
 
                     HocVien hoc_vien = new HocVien();
-                    hoc_vien= hoc_vien_service.getHocVienID((int)model.getValueAt(selectedRowIndex, 0));
+                    hoc_vien = hoc_vien_service.getHocVienID((int) model.getValueAt(selectedRowIndex, 0));
 
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-
                     HocVienInfoJFrame frame = new HocVienInfoJFrame(hoc_vien);
                     frame.setTitle("Thông tin chi tiết");
                     frame.setResizable(false);
@@ -140,4 +140,29 @@ public class HocVienController {
         jpn_view.repaint();
     }
 
+    public void setEven() {
+        jbt_add.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                HocVienInfoJFrame frame = new HocVienInfoJFrame(new HocVien());
+                frame.setTitle("Đăng kí học viên");
+                frame.setResizable(false);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jbt_add.setBackground(new Color(0, 200, 83));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jbt_add.setBackground(new Color(100, 221, 23));
+            }
+
+        });
+    }
 }
