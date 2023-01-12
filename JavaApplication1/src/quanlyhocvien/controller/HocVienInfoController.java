@@ -36,7 +36,7 @@ public class HocVienInfoController {
     public HocVienInfoController() {
     }
 
-    public HocVienInfoController(JButton btn_submit, JTextField jtf_hoten, JDateChooser jdc_ngaysinh, 
+    public HocVienInfoController(JButton btn_submit, JTextField jtf_hoten, JDateChooser jdc_ngaysinh,
             JRadioButton jrb_nam, JRadioButton jrb_nu, JRadioButton jrb_khac, JTextField jtf_phone, JTextField jtf_email, JLabel jlb_msg, JCheckBox jcb_tinhtrang) {
         this.btn_submit = btn_submit;
         this.jtf_hoten = jtf_hoten;
@@ -98,7 +98,7 @@ public class HocVienInfoController {
                             hoc_vien_controller.setEven(hoc_vien_controller);
                         } else {
                             jlb_msg.setText("Có lỗi xảy ra, vui lòng thử lại!");
-                            
+
                         }
                     }
 
