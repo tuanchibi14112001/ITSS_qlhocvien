@@ -1,6 +1,7 @@
 
 package quanlyhocvien.view;
 
+import quanlyhocvien.controller.HocVienController;
 import quanlyhocvien.controller.HocVienInfoController;
 import quanlyhocvien.model.HocVien;
 
@@ -18,7 +19,15 @@ public class HocVienInfoJFrame extends javax.swing.JFrame {
         HocVienInfoController controller = new HocVienInfoController(btn_submit,jtf_hoten,jdc_ngaysinh,
                                                                         jrb_nam,jrb_nu,jrb_khac,jtf_phone,jtf_email,jlb_msg,jcb_trangthai);
         controller.setView(hoc_vien);
-        controller.setEven();
+        //controller.setEven();
+    }
+    public HocVienInfoJFrame(HocVien hoc_vien, HocVienController hv_controller){
+        initComponents();
+        HocVienInfoController controller = new HocVienInfoController(btn_submit,jtf_hoten,jdc_ngaysinh,
+                                                                        jrb_nam,jrb_nu,jrb_khac,jtf_phone,jtf_email,jlb_msg,jcb_trangthai);
+        controller.setView(hoc_vien);
+        controller.setEven(hv_controller);
+       
     }
 
     /**
