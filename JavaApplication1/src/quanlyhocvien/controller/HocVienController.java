@@ -48,7 +48,7 @@ public class HocVienController {
         this.hoc_vien_service = new HocVienServiceImpl();
     }
 
-    public void setDatatoTable() {
+    public void setDatatoTable(HocVienController hoc_vien_controller) {
         List<HocVien> listItem = hoc_vien_service.getList();
         DefaultTableModel model = new ClassTableModel().setTableHocVien(listItem, listColumn);
         JTable table = new JTable(model);
@@ -111,7 +111,7 @@ public class HocVienController {
                     hoc_vien = hoc_vien_service.getHocVienID((int) model.getValueAt(selectedRowIndex, 0));
 
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-                    HocVienInfoJFrame frame = new HocVienInfoJFrame(hoc_vien);
+                    HocVienInfoJFrame frame = new HocVienInfoJFrame(hoc_vien,hoc_vien_controller);
                     frame.setTitle("Thông tin chi tiết");
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
@@ -140,12 +140,12 @@ public class HocVienController {
         jpn_view.repaint();
     }
 
-    public void setEven() {
+    public void setEven(HocVienController hoc_vien_controller) {
         jbt_add.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                HocVienInfoJFrame frame = new HocVienInfoJFrame(new HocVien());
+                HocVienInfoJFrame frame = new HocVienInfoJFrame(new HocVien(),hoc_vien_controller);
                 frame.setTitle("Đăng kí học viên");
                 frame.setResizable(false);
                 frame.setLocationRelativeTo(null);

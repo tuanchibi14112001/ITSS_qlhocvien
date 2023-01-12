@@ -15,8 +15,8 @@ public class HocVienJpanel extends javax.swing.JPanel {
     public HocVienJpanel() {
         initComponents();
         HocVienController hoc_vien_controller = new HocVienController(jpn_view, btn_add, jtf_search);
-        hoc_vien_controller.setDatatoTable();
-        hoc_vien_controller.setEven();
+        hoc_vien_controller.setDatatoTable(hoc_vien_controller);
+        hoc_vien_controller.setEven(hoc_vien_controller);
     }
 
     /**
@@ -32,6 +32,7 @@ public class HocVienJpanel extends javax.swing.JPanel {
         btn_add = new javax.swing.JButton();
         jtf_search = new javax.swing.JTextField();
         jpn_view = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         btn_add.setBackground(new java.awt.Color(76, 175, 80));
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
@@ -52,25 +53,31 @@ public class HocVienJpanel extends javax.swing.JPanel {
         );
         jpn_viewLayout.setVerticalGroup(
             jpn_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
+
+        jLabel1.setText("Tìm theo tên:");
 
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
         jpn_root.setLayout(jpn_rootLayout);
         jpn_rootLayout.setHorizontalGroup(
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpn_rootLayout.createSequentialGroup()
+            .addGroup(jpn_rootLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                 .addComponent(btn_add))
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpn_rootLayout.setVerticalGroup(
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
-                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btn_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtf_search))
+                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_search)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -101,6 +108,7 @@ public class HocVienJpanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpn_root;
     private javax.swing.JPanel jpn_view;
     private javax.swing.JTextField jtf_search;

@@ -69,7 +69,7 @@ public class HocVienInfoController {
 
     }
 
-    public void setEven() {
+    public void setEven(HocVienController hoc_vien_controller) {
         btn_submit.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -94,7 +94,8 @@ public class HocVienInfoController {
                         if (lastId != 0) {
                             hoc_vien.setMa_hoc_vien(lastId);
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
-                            
+                            hoc_vien_controller.setDatatoTable(hoc_vien_controller);
+                            hoc_vien_controller.setEven(hoc_vien_controller);
                         } else {
                             jlb_msg.setText("Có lỗi xảy ra, vui lòng thử lại!");
                             
