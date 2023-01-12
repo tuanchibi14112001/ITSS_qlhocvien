@@ -42,7 +42,6 @@ public class LopHocDAOImpl  implements LopHocDAO {
                 lopHoc.setMa_lop_hoc(rs.getInt("ma_lop_hoc"));
                 lopHoc.setLich_hoc(rs.getString("lich_hoc"));
                 lopHoc.setKhoaHoc(khoaHoc);
-                lopHoc.setTong(rs.getInt("tong"));
                 lopHoc.setTinh_trang(rs.getBoolean("tinh_trang_lh"));
 
                 

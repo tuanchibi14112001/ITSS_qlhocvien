@@ -4,6 +4,8 @@
  */
 package quanlyhocvien.view;
 
+import quanlyhocvien.controller.LopHocController;
+
 /**
  *
  * @author TUAN
@@ -15,6 +17,8 @@ public class LopHocJpanel extends javax.swing.JPanel {
      */
     public LopHocJpanel() {
         initComponents();
+        LopHocController lop_hoc_controller = new LopHocController(jpn_view, btn_add, jtf_search);
+        lop_hoc_controller.setDatatoTable();
     }
 
     /**

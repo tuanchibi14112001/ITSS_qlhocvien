@@ -13,6 +13,7 @@ public class LopHocChiTiet {
     private LopHoc lopHoc;
     private HocVien hocVien;
     private Date ngay_dang_ky;
+    private boolean thanh_toan;
     private boolean tinh_trang;
 
     public LopHoc getLopHoc() {
@@ -40,6 +41,16 @@ public class LopHocChiTiet {
     public void setNgay_dang_ky(Date ngay_dang_ky) {
         this.ngay_dang_ky = ngay_dang_ky;
     }
+
+    public boolean isThanh_toan() {
+        return thanh_toan;
+    }
+
+    public void setThanh_toan(boolean thanh_toan) {
+        this.thanh_toan = thanh_toan;
+    }
+    
+    
 
     public boolean isTinh_trang() {
         return tinh_trang;

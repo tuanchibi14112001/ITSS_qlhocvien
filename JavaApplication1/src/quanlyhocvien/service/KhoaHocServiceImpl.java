@@ -19,5 +19,15 @@ public class KhoaHocServiceImpl implements KhoaHocService{
     public List<KhoaHoc> getList() {
         return khoaHocDAO.getList();
     }
+    
+    @Override
+    public KhoaHoc getKhoaHocID(int ma_hoc_vien) {
+        return khoaHocDAO.getKhoaHocID(ma_hoc_vien);
+    }
+
+    @Override
+    public int createOrUpdate(KhoaHoc khoa_hoc) {
+        return khoaHocDAO.createOrUpdate(khoa_hoc);
+    }
 
 }

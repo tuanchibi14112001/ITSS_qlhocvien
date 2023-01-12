@@ -12,7 +12,6 @@ public class LopHoc {
     private int ma_lop_hoc;
     private String lich_hoc;
     private KhoaHoc khoaHoc;
-    private int tong;
     private boolean tinh_trang;
 
     public int getMa_lop_hoc() {
@@ -41,17 +40,6 @@ public class LopHoc {
         this.khoaHoc = khoaHoc;
     }
 
-    
-
-    public int getTong() {
-        return tong;
-    }
-
-    public void setTong(int tong) {
-        this.tong = tong;
-    }
-
-
     public boolean isTinh_trang() {
         return tinh_trang;
     }
@@ -64,7 +52,7 @@ public class LopHoc {
     @Override
     public String toString() {
         return "LopHoc{" + "ma_lop_hoc=" + ma_lop_hoc + ", ten_khoa_hoc=" + khoaHoc.getTen_khoa_hoc() 
-                + ", lich_hoc=" + lich_hoc + ", so_hoc_vien=" + tong + ", ngay_bat_dau=" + khoaHoc.getNgay_bat_dau() 
+                + ", lich_hoc=" + lich_hoc + ", ngay_bat_dau=" + khoaHoc.getNgay_bat_dau() 
                 + ", ngay_ket_thuc=" + khoaHoc.getNgay_ket_thuc() + ", tinh_trang=" + tinh_trang + '}';
     }
 

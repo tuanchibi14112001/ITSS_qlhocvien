@@ -13,4 +13,6 @@ import quanlyhocvien.model.KhoaHoc;
  */
 public interface KhoaHocDAO {
     public List<KhoaHoc> getList();
+    public KhoaHoc getKhoaHocID(int ma_khoa_hoc);
+    public int createOrUpdate(KhoaHoc khoa_hoc);
 }

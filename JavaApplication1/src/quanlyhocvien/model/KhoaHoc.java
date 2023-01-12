@@ -15,6 +15,7 @@ public class KhoaHoc {
     private String ten_khoa_hoc;
     private String trinh_do;
     private String mo_ta;
+    private int hoc_phi;
     private Date ngay_bat_dau;
     private Date ngay_ket_thuc;
     private boolean tinh_trang;
@@ -41,6 +42,14 @@ public class KhoaHoc {
 
     public void setTrinh_do(String trinh_do) {
         this.trinh_do = trinh_do;
+    }
+
+    public int getHoc_phi() {
+        return hoc_phi;
+    }
+
+    public void setHoc_phi(int hoc_phi) {
+        this.hoc_phi = hoc_phi;
     }
     
     
