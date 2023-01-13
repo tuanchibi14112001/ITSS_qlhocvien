@@ -4,6 +4,7 @@
  */
 package quanlyhocvien.view;
 
+import quanlyhocvien.controller.KhoaHocController;
 import quanlyhocvien.controller.KhoaHocInfoController;
 import quanlyhocvien.model.KhoaHoc;
 
@@ -16,12 +17,12 @@ public class KhoaHocInfoJFrame extends javax.swing.JFrame {
     /**
      * Creates new form KhoaHocInfoJFrame
      */
-    public KhoaHocInfoJFrame(KhoaHoc khoa_hoc) {
+    public KhoaHocInfoJFrame(KhoaHoc khoa_hoc, KhoaHocController khoa_hoc_controller) {
         initComponents();
         KhoaHocInfoController controller = new KhoaHocInfoController(btn_submit, jtf_tenkhoahoc, jrb_n5, jrb_n4, jrb_n3,jrb_n2, jrb_n1, 
                 jdc_ngaybatdau, jdc_ngayketthuc, jtf_hocphi, jlb_msg, jcb_trangthai, jta_mota);
         controller.setView(khoa_hoc);
-        controller.setEven();
+        controller.setEven(khoa_hoc_controller);
     }
 
     /**
@@ -248,22 +249,21 @@ public class KhoaHocInfoJFrame extends javax.swing.JFrame {
                     .addComponent(jlb_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );

@@ -40,9 +40,9 @@ public class KhoaHocInfoController {
     public KhoaHocInfoController() {
     }
 
-    public KhoaHocInfoController(JButton btn_submit, JTextField jtf_tenkhoahoc, 
-            JRadioButton jrb_n5, JRadioButton jrb_n4, JRadioButton jrb_n3, JRadioButton jrb_n2, JRadioButton jrb_n1, 
-            JDateChooser jdc_ngaybatdau, JDateChooser jdc_ngayketthuc, 
+    public KhoaHocInfoController(JButton btn_submit, JTextField jtf_tenkhoahoc,
+            JRadioButton jrb_n5, JRadioButton jrb_n4, JRadioButton jrb_n3, JRadioButton jrb_n2, JRadioButton jrb_n1,
+            JDateChooser jdc_ngaybatdau, JDateChooser jdc_ngayketthuc,
             JTextField jtf_hocphi, JLabel jlb_msg, JCheckBox jcb_tinhtrang, JTextArea jta_mota) {
         this.btn_submit = btn_submit;
         this.jtf_tenkhoahoc = jtf_tenkhoahoc;
@@ -55,16 +55,16 @@ public class KhoaHocInfoController {
         this.jdc_ngayketthuc = jdc_ngayketthuc;
         this.jtf_hocphi = jtf_hocphi;
         this.jlb_msg = jlb_msg;
-        this.jta_mota = jta_mota; 
+        this.jta_mota = jta_mota;
         this.jcb_tinhtrang = jcb_tinhtrang;
         this.khoa_hoc_service = new KhoaHocServiceImpl();
 
-    } 
+    }
 
     public void setView(KhoaHoc khoa_hoc) {
         this.khoa_hoc = khoa_hoc;
         jtf_tenkhoahoc.setText(khoa_hoc.getTen_khoa_hoc());
-        
+
         if (khoa_hoc.getTrinh_do().equals("N5")) {
             jrb_n5.setSelected(true);
         } else if (khoa_hoc.getTrinh_do().equals("N4")) {
@@ -76,7 +76,7 @@ public class KhoaHocInfoController {
         } else {
             jrb_n1.setSelected(true);
         }
-        
+
         jtf_hocphi.setText(Integer.toString(khoa_hoc.getHoc_phi()));
         jdc_ngaybatdau.setDate(khoa_hoc.getNgay_bat_dau());
         jdc_ngayketthuc.setDate(khoa_hoc.getNgay_ket_thuc());
@@ -85,7 +85,7 @@ public class KhoaHocInfoController {
 
     }
 
-    public void setEven() {
+    public void setEven(KhoaHocController khoa_hoc_controller) {
         btn_submit.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -104,9 +104,9 @@ public class KhoaHocInfoController {
                         khoa_hoc.setTrinh_do("N5");
                     } else if (jrb_n4.isSelected()) {
                         khoa_hoc.setTrinh_do("N4");
-                    }else if (jrb_n3.isSelected()) {
+                    } else if (jrb_n3.isSelected()) {
                         khoa_hoc.setTrinh_do("N3");
-                    }else if (jrb_n2.isSelected()) {
+                    } else if (jrb_n2.isSelected()) {
                         khoa_hoc.setTrinh_do("N2");
                     } else {
                         khoa_hoc.setTrinh_do("N1");
@@ -116,10 +116,12 @@ public class KhoaHocInfoController {
                         if (lastId != 0) {
                             khoa_hoc.setMa_khoa_hoc(lastId);
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
-                            
+                            khoa_hoc_controller.setDatatoTable(khoa_hoc_controller);
+                            khoa_hoc_controller.setEven(khoa_hoc_controller);
+
                         } else {
                             jlb_msg.setText("Có lỗi xảy ra, vui lòng thử lại!");
-                            
+
                         }
                     }
 
@@ -143,7 +145,7 @@ public class KhoaHocInfoController {
 
     private boolean checkNotNull() {
         if (jtf_tenkhoahoc.getText().length() == 0 || jtf_hocphi.getText().length() == 0 || jta_mota.getText().length() == 0
-                || jdc_ngaybatdau.getDate() == null|| jdc_ngayketthuc.getDate() == null) {
+                || jdc_ngaybatdau.getDate() == null || jdc_ngayketthuc.getDate() == null) {
             return false;
         }
         return true;
