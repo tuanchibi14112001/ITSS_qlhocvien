@@ -74,12 +74,12 @@ public class ClassTableModel {
                 obj[1] = i + 1;
                 obj[2] = khoa_hoc.getTen_khoa_hoc();
                 obj[3] = khoa_hoc.getTrinh_do();
-                obj[4] = khoa_hoc.getMo_ta();
-                obj[5] = khoa_hoc.getHoc_phi();
+//                obj[4] = khoa_hoc.getMo_ta();
+                obj[4] = khoa_hoc.getHoc_phi();
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                obj[6] = formatter.format(khoa_hoc.getNgay_bat_dau());
+                obj[5] = formatter.format(khoa_hoc.getNgay_bat_dau());
                 SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
-                obj[7] = formatter2.format(khoa_hoc.getNgay_ket_thuc());
+                obj[6] = formatter2.format(khoa_hoc.getNgay_ket_thuc());
                 
                 dtm.addRow(obj);
             }

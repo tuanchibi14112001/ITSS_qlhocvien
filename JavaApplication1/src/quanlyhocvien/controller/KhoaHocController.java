@@ -34,7 +34,7 @@ public class KhoaHocController {
     private JTextField jtf_search;
     private TableRowSorter<TableModel> rowSorter = null;//sap xep hang
     private KhoaHocService khoa_hoc_service = null;
-    private String[] listColumn = {"Mã khóa học","STT", "Tên khóa học", "Trình độ", "Mô tả", "Học phí (VNĐ)", "Ngày bắt đầu", "Ngày kết thúc"};
+    private String[] listColumn = {"Mã khóa học","STT", "Tên khóa học", "Trình độ", "Học phí (VNĐ)", "Ngày bắt đầu", "Ngày kết thúc"};
 
     public KhoaHocController() {
     }
@@ -46,7 +46,7 @@ public class KhoaHocController {
         this.khoa_hoc_service = new KhoaHocServiceImpl();
     }
 
-    public void setDatatoTable() {
+    public void setDatatoTable(KhoaHocController khoa_hoc_controller) {
         List<KhoaHoc> listItem = khoa_hoc_service.getList();
         DefaultTableModel model = new ClassTableModel().setTableKhoaHoc(listItem, listColumn);
         JTable table = new JTable(model);
@@ -109,7 +109,7 @@ public class KhoaHocController {
                     khoa_hoc = khoa_hoc_service.getKhoaHocID((int) model.getValueAt(selectedRowIndex, 0));
 
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-                    KhoaHocInfoJFrame frame = new KhoaHocInfoJFrame(khoa_hoc);
+                    KhoaHocInfoJFrame frame = new KhoaHocInfoJFrame(khoa_hoc,khoa_hoc_controller);
                     frame.setTitle("Thông tin chi tiết");
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
@@ -138,7 +138,7 @@ public class KhoaHocController {
         jpn_view.repaint();
     }
 
-    public void setEven() {
+    public void setEven(KhoaHocController khoa_hoc_controller) {
         jbt_add.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -146,7 +146,7 @@ public class KhoaHocController {
                 KhoaHoc khoa_hoc = new KhoaHoc();
                 khoa_hoc.setTrinh_do("N5");
                 khoa_hoc.setTinh_trang(true);
-                KhoaHocInfoJFrame frame = new KhoaHocInfoJFrame(khoa_hoc);
+                KhoaHocInfoJFrame frame = new KhoaHocInfoJFrame(khoa_hoc,khoa_hoc_controller);
                 frame.setTitle("Tạo khóa học mới");
                 frame.setResizable(false);
                 frame.setLocationRelativeTo(null);

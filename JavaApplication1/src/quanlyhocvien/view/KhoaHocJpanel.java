@@ -18,8 +18,8 @@ public class KhoaHocJpanel extends javax.swing.JPanel {
     public KhoaHocJpanel() {
         initComponents();
         KhoaHocController khoa_hoc_controller = new KhoaHocController(jpn_view, btn_add, jtf_search);
-        khoa_hoc_controller.setDatatoTable();
-        khoa_hoc_controller.setEven();
+        khoa_hoc_controller.setDatatoTable(khoa_hoc_controller);
+        khoa_hoc_controller.setEven(khoa_hoc_controller);
     }
 
     /**
@@ -37,8 +37,6 @@ public class KhoaHocJpanel extends javax.swing.JPanel {
         jpn_view = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btn_print = new javax.swing.JButton();
-
-        setBackground(new java.awt.Color(255, 255, 255));
 
         btn_add.setBackground(new java.awt.Color(76, 175, 80));
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
