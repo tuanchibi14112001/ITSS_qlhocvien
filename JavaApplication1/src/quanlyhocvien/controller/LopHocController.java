@@ -1,8 +1,11 @@
 package quanlyhocvien.controller;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,10 +18,12 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
 import quanlyhocvien.utility.ClassTableModel;
 import quanlyhocvien.service.LopHocService;
 import quanlyhocvien.service.LopHocServiceImpl;
+import quanlyhocvien.view.LopHocInfoJFrame;
 
 /**
  *
@@ -56,7 +61,15 @@ public class LopHocController {
                     rowSorter.setRowFilter(null);
                 } else {
 
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                    rowSorter.setRowFilter(new RowFilter() {
+                        @Override
+                        public boolean include(RowFilter.Entry entry) {
+                            String name = entry.getStringValue(2);
+                            String text = jtf_search.getText();
+                            return name.toLowerCase().contains(text.toLowerCase());
+
+                        }
+                    });
                 }
             }
 
@@ -67,7 +80,14 @@ public class LopHocController {
                     rowSorter.setRowFilter(null);
                 } else {
 
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                    rowSorter.setRowFilter(new RowFilter() {
+                        @Override
+                        public boolean include(RowFilter.Entry entry) {
+                            String name = entry.getStringValue(2);
+                            String text = jtf_search.getText();
+                            return name.toLowerCase().contains(text.toLowerCase());
+                        }
+                    });
                 }
             }
 
@@ -75,6 +95,31 @@ public class LopHocController {
             public void changedUpdate(DocumentEvent de) {
             }
         });
+        
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() > 1 && table.getSelectedRow() != -1) {//click 2 lan va co hang trong bang
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    int selectedRowIndex = table.getSelectedRow();
+                    selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+                    //System.out.println(selectedRowIndex);
+
+                    LopHoc lop_hoc = new LopHoc();
+                    lop_hoc = lop_hoc_service.getLopHocID((int) model.getValueAt(selectedRowIndex, 0));
+
+                    //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
+                    LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc);
+                    frame.setTitle("Thông tin chi tiết");
+                    frame.setResizable(false);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+
+                }
+            }
+
+        });
+        
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));
         table.setRowHeight(50);
@@ -91,5 +136,36 @@ public class LopHocController {
         jpn_view.add(scroll);
         jpn_view.validate();//xac nhan
         jpn_view.repaint();
+    }
+    
+    public void setEven() {
+        jbt_add.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LopHoc lop_hoc = new LopHoc();
+                KhoaHoc khoa_hoc = new KhoaHoc();
+                khoa_hoc.setMa_khoa_hoc(1);
+                lop_hoc.setTinh_trang(true);
+                lop_hoc.setKhoaHoc(khoa_hoc);
+                LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc);
+                frame.setTitle("Tạo lớp học mới");
+                frame.setResizable(false);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jbt_add.setBackground(new Color(0, 200, 83));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jbt_add.setBackground(new Color(100, 221, 23));
+            }
+
+        });
     }
 }
