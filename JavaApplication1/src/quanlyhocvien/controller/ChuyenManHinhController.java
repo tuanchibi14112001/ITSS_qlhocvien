@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import quanlyhocvien.bean.DanhMucBean;
 import quanlyhocvien.view.HocVienJpanel;
 import quanlyhocvien.view.KhoaHocJpanel;
+import quanlyhocvien.view.LopHocChiTietJpanel;
 import quanlyhocvien.view.LopHocJpanel;
 import quanlyhocvien.view.ThongKeJpanel;
 import quanlyhocvien.view.TrangChuJpanel;
@@ -77,6 +78,9 @@ public class ChuyenManHinhController {
                     break;
                 case "LopHoc":
                     node = new LopHocJpanel();
+                    break;
+                case "LopHocChiTiet":
+                    node = new LopHocChiTietJpanel();
                     break;
                 case "ThongKe":
                     node = new ThongKeJpanel();

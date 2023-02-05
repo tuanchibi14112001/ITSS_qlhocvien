@@ -38,8 +38,6 @@ public class LopHocJpanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btn_print = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-
         btn_add.setBackground(new java.awt.Color(76, 175, 80));
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
         btn_add.setText("+Thêm mới");
