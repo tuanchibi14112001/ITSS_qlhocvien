@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import quanlyhocvien.model.HocVien;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
+import quanlyhocvien.model.LopHocChiTiet;
 
 /**
  *
@@ -114,6 +115,42 @@ public class ClassTableModel {
                 SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
                 obj[5] = formatter2.format(lop_hoc.getKhoaHoc().getNgay_ket_thuc());
                 
+                dtm.addRow(obj);
+            }
+        }
+
+        return dtm;
+    }
+    
+    public DefaultTableModel setTableLopHocChiTiet(List<LopHoc> listItem, String[] listColumn) {
+        DefaultTableModel dtm = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+
+            }
+        };
+        dtm.setColumnIdentifiers(listColumn);
+        int cols = listColumn.length;
+        Object[] obj = null;
+        int rows = listItem.size();
+        LopHoc lop_hoc = null;
+        if (rows > 0) {
+            for (int i = 0; i < rows; i++) {
+                
+                lop_hoc = listItem.get(i);
+                
+                System.out.println("si so" +lop_hoc.getSySo());
+                obj = new Object[cols];
+                obj[0] = lop_hoc.getMa_lop_hoc();
+                obj[1] = i + 1;
+                obj[2] = lop_hoc.getKhoaHoc().getTen_khoa_hoc();
+                obj[3] = lop_hoc.getLich_hoc();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                obj[4] = formatter.format(lop_hoc.getKhoaHoc().getNgay_bat_dau());
+                SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
+                obj[5] = formatter2.format(lop_hoc.getKhoaHoc().getNgay_ket_thuc());
+                obj[6] = lop_hoc.getSySo();
                 dtm.addRow(obj);
             }
         }

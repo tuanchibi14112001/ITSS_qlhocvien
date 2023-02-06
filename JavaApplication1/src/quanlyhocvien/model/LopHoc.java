@@ -12,7 +12,9 @@ public class LopHoc {
     private int ma_lop_hoc;
     private String lich_hoc;
     private KhoaHoc khoaHoc;
+    private int sySo;
     private boolean tinh_trang;
+    
 
     public int getMa_lop_hoc() {
         return ma_lop_hoc;
@@ -39,6 +41,16 @@ public class LopHoc {
     public void setKhoaHoc(KhoaHoc khoaHoc) {
         this.khoaHoc = khoaHoc;
     }
+
+    public int getSySo() {
+        return sySo;
+    }
+
+    public void setSySo(int sySo) {
+        this.sySo = sySo;
+    }
+    
+    
 
     public boolean isTinh_trang() {
         return tinh_trang;
