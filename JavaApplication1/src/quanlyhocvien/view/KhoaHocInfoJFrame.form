@@ -108,6 +108,9 @@
               <Font name="Liberation Sans" size="15" style="1"/>
             </Property>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Th&#xf4;ng tin kh&#xf3;a h&#x1ecd;c"/>
+          </AccessibilityProperties>
 
           <Layout>
             <DimensionLayout dim="0">

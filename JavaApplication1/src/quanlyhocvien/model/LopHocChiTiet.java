@@ -3,60 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package quanlyhocvien.model;
-import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author xuannang
  */
 public class LopHocChiTiet {
-    private LopHoc lopHoc;
-    private HocVien hocVien;
-    private Date ngay_dang_ky;
-    private boolean thanh_toan;
-    private boolean tinh_trang;
+    private int maLopHoc;
+    private List<HocVienLopHoc> listHvlh;
+    
 
-    public LopHoc getLopHoc() {
-        return lopHoc;
+    public int getMaLopHoc() {
+        return maLopHoc;
     }
 
-    public void setLopHoc(LopHoc lopHoc) {
-        this.lopHoc = lopHoc;
+    public void setMaLopHoc(int maLopHoc) {
+        this.maLopHoc = maLopHoc;
     }
 
-    public HocVien getHocVien() {
-        return hocVien;
+    public List<HocVienLopHoc> getListHvlh() {
+        return listHvlh;
     }
 
-    public void setHocVien(HocVien hocVien) {
-        this.hocVien = hocVien;
+    public void setListHvlh(HocVienLopHoc hvlh) {
+        this.listHvlh.add(hvlh);
     }
 
     
 
-    public Date getNgay_dang_ky() {
-        return ngay_dang_ky;
-    }
-
-    public void setNgay_dang_ky(Date ngay_dang_ky) {
-        this.ngay_dang_ky = ngay_dang_ky;
-    }
-
-    public boolean isThanh_toan() {
-        return thanh_toan;
-    }
-
-    public void setThanh_toan(boolean thanh_toan) {
-        this.thanh_toan = thanh_toan;
-    }
-    
-    
-
-    public boolean isTinh_trang() {
-        return tinh_trang;
-    }
-
-    public void setTinh_trang(boolean tinh_trang) {
-        this.tinh_trang = tinh_trang;
-    }
 }
