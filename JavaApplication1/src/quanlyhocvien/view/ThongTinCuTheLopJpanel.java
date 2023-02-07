@@ -5,6 +5,8 @@
 
 package quanlyhocvien.view;
 
+import quanlyhocvien.model.LopHocChiTiet;
+
 /**
  *
  * @author xuannang
@@ -12,7 +14,7 @@ package quanlyhocvien.view;
 public class ThongTinCuTheLopJpanel extends javax.swing.JPanel {
 
     /** Creates new form ThongTinCuTheLopJpanel */
-    public ThongTinCuTheLopJpanel() {
+    public ThongTinCuTheLopJpanel(LopHocChiTiet thongTinLop) {
         initComponents();
     }
 

@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,14 +23,18 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import quanlyhocvien.model.HocVien;
+import quanlyhocvien.model.HocVienLopHoc;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
+import quanlyhocvien.model.LopHocChiTiet;
 import quanlyhocvien.service.LopHocChiTietService;
 import quanlyhocvien.service.LopHocChiTietServiceImpl;
 import quanlyhocvien.service.LopHocService;
 import quanlyhocvien.service.LopHocServiceImpl;
 import quanlyhocvien.utility.ClassTableModel;
 import quanlyhocvien.view.LopHocInfoJFrame;
+import quanlyhocvien.view.ThongTinCuTheLopJpanel;
 
 /**
  *
@@ -101,29 +106,37 @@ public class LopHocChiTietController {
             }
         });
         
-//        table.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() > 1 && table.getSelectedRow() != -1) {//click 2 lan va co hang trong bang
-//                    DefaultTableModel model = (DefaultTableModel) table.getModel();
-//                    int selectedRowIndex = table.getSelectedRow();
-//                    selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
-//                    //System.out.println(selectedRowIndex);
-//
-//                    LopHoc lop_hoc = new LopHoc();
-//                    lop_hoc = lop_hoc_chi_tiet_service.getLopHocID((int) model.getValueAt(selectedRowIndex, 0));
-//
-//                    //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-//                    LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc);
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                List<HocVien> listTTHocVien = new ArrayList<HocVien>();
+                if (e.getClickCount() > 1 && table.getSelectedRow() != -1) {//click 2 lan va co hang trong bang
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    int selectedRowIndex = table.getSelectedRow();
+                    selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+                    //System.out.println(selectedRowIndex);
+
+                    LopHocChiTiet lop_hoc_chi_tiet = new LopHocChiTiet();
+                    lop_hoc_chi_tiet = lop_hoc_chi_tiet_service.getThongTinLopHoc((int) model.getValueAt(selectedRowIndex, 0));
+//                    for (HocVienLopHoc hoc_vien_lop_hoc : lop_hoc_chi_tiet.getListHvlh()) {
+//                        for (int i : hoc_vien_lop_hoc.getMa_hoc_vien()) {
+//                            HocVien hocVien = new HocVien();
+//                        }
+//                    }
+                    
+//                    ThongTinLopJpanel panel = new ThongTinLopJpanel(lop_hoc_chi_tiet);
+//                    panel.
+//                    LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc_chi_tiet);
 //                    frame.setTitle("Thông tin chi tiết");
 //                    frame.setResizable(false);
 //                    frame.setLocationRelativeTo(null);
 //                    frame.setVisible(true);
-//
-//                }
-//            }
-//
-//        });
+                    System.out.println(lop_hoc_chi_tiet);
+                }
+            }
+
+        });
         
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));

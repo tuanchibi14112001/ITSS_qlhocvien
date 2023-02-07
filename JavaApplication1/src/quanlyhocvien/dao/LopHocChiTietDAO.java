@@ -5,8 +5,10 @@
 package quanlyhocvien.dao;
 
 import java.util.List;
+import quanlyhocvien.model.HocVien;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
+import quanlyhocvien.model.LopHocChiTiet;
 
 /**
  *
@@ -14,5 +16,6 @@ import quanlyhocvien.model.LopHoc;
  */
 public interface LopHocChiTietDAO {
     public List<LopHoc> getList();
-    
+    public LopHocChiTiet getThongTinLopHoc(int ma_lop_hoc);
+//    public int createOrUpdate(LopHoc lop_hoc, KhoaHoc khoa_hoc);
 }

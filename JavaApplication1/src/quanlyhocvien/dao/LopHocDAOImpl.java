@@ -87,7 +87,7 @@ public class LopHocDAOImpl  implements LopHocDAO {
                 lopHoc.setTinh_trang(rs.getBoolean("tinh_trang_lh"));
 
                 
-
+//                System.out.println(khoaHoc);
             }
             ps.close();
             conn.close();

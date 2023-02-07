@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package quanlyhocvien.model;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class LopHocChiTiet {
     private int maLopHoc;
-    private List<HocVienLopHoc> listHvlh;
+    private List<HocVienLopHoc> listHvlh = new ArrayList<HocVienLopHoc>();
     
 
     public int getMaLopHoc() {
