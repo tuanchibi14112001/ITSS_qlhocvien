@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2023 at 05:26 PM
+-- Generation Time: Feb 07, 2023 at 04:33 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -43,8 +43,12 @@ CREATE TABLE `hoc_vien` (
 
 INSERT INTO `hoc_vien` (`ma_hoc_vien`, `ho_ten`, `ngay_sinh`, `gioi_tinh`, `so_dien_thoai`, `email`, `tinh_trang`) VALUES
 (1, 'Trương Anh Tuấn', '2001-11-14', 1, '0971528594', 'tuanchibi14112001', b'1'),
-(2, 'Trần Xuân Năng', '2023-01-10', 1, '0333501404', 'nang3007@gmail.com', b'0'),
-(3, 'Trần Xuân Năng', '2023-01-04', 1, '0333501404', 'nang3007@gmail.com', b'1');
+(3, 'Trần Xuân Năng', '2023-01-04', 1, '0333501404', 'nang3007@gmail.com', b'1'),
+(4, 'Trần Cao Minh', '2001-12-14', 1, '0971528598', 'minhtc@gmail.com', b'1'),
+(5, 'Hoàng Mạnh Hùng', '2001-02-19', 2, '0971528599', 'hunghm@gmail.com', b'1'),
+(6, 'Nguyễn Thế Thái', '2001-01-02', 1, '0987778891', 'thaitn@gmail.com', b'1'),
+(7, 'Hà Thị Linh', '2001-05-12', 0, '0987889981', 'linhht@gmail.com', b'1'),
+(8, 'MIn', '2023-02-02', 1, '0971283213', 'minh@gmail.com', b'0');
 
 -- --------------------------------------------------------
 
@@ -69,9 +73,11 @@ CREATE TABLE `khoa_hoc` (
 
 INSERT INTO `khoa_hoc` (`ma_khoa_hoc`, `ten_khoa_hoc`, `trinh_do`, `mo_ta`, `hoc_phi`, `ngay_bat_dau`, `ngay_ket_thuc`, `tinh_trang_kh`) VALUES
 (1, 'Khóa Kaiwa - N3', 'N5', 'Dành cho những bạn có trình độ ~ N3, N2.', 1000000, '2023-01-13', '2023-04-13', b'0'),
-(2, 'Khóa luyện đề N3.', 'N5', '60 ngày đỗ N3.', 2000000, '2023-01-15', '2023-03-15', b'0'),
-(3, 'Khóa luyện đề N2.', 'N1', 'Dành cho các bạn đã học xong kiến thức cơ bản N2.', 2131321, '2023-02-01', '2023-04-15', b'1'),
-(4, 'Khóa luyện đề N5', 'N5', 'Dành cho các bạn mới học.\n<3', 10221220, '2023-01-13', '2023-03-12', b'0');
+(2, 'Khóa luyện đề N3.', 'N3', '60 ngày đỗ N3.', 2000000, '2023-01-15', '2023-03-15', b'1'),
+(3, 'Khóa luyện đề N2', 'N2', 'Dành cho các bạn đã học xong kiến thức cơ bản N2.', 2131321, '2023-02-01', '2023-04-15', b'1'),
+(4, 'Khóa luyện đề N5', 'N5', 'Dành cho các bạn mới học.\r\n<3', 10221220, '2023-01-13', '2023-03-12', b'1'),
+(5, 'Khoá Kaiwa N3', 'N3', '- Luyện nói kaiwa công việc', 1000000, '2023-02-14', '2023-04-14', b'1'),
+(6, 'Khóa cơ bản N4', 'N4', 'Ôn lại cơ bản N5, học kiến thức N4', 2000000, '2023-01-15', '2023-04-15', b'1');
 
 -- --------------------------------------------------------
 
@@ -91,7 +97,7 @@ CREATE TABLE `lop_hoc` (
 --
 
 INSERT INTO `lop_hoc` (`ma_lop_hoc`, `lich_hoc`, `ma_khoa_hoc`, `tinh_trang_lh`) VALUES
-(1, 'Thứ 3, 5, 7 hàng tuần - 19h30-21h30', 2, b'1'),
+(1, 'Thứ 3, 5, 7 hàng tuần - 19h30-21h30', 5, b'1'),
 (2, 'Thứ 2, 4, 6 hàng tuần - 15h30-17h30', 3, b'1');
 
 -- --------------------------------------------------------
@@ -107,6 +113,26 @@ CREATE TABLE `lop_hoc_chi_tiet` (
   `thanh_toan` bit(1) NOT NULL,
   `tinh_trang` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tai_khoan`
+--
+
+CREATE TABLE `tai_khoan` (
+  `ma_tai_khoan` int(11) NOT NULL,
+  `ten_dang_nhap` varchar(50) NOT NULL,
+  `mat_khau` varchar(50) NOT NULL,
+  `tinh_trang` bit(1) NOT NULL DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tai_khoan`
+--
+
+INSERT INTO `tai_khoan` (`ma_tai_khoan`, `ten_dang_nhap`, `mat_khau`, `tinh_trang`) VALUES
+(1, 'admin', 'admin', b'1');
 
 --
 -- Indexes for dumped tables
@@ -139,6 +165,13 @@ ALTER TABLE `lop_hoc_chi_tiet`
   ADD KEY `lien_ket_2` (`ma_hoc_vien`);
 
 --
+-- Indexes for table `tai_khoan`
+--
+ALTER TABLE `tai_khoan`
+  ADD PRIMARY KEY (`ma_tai_khoan`),
+  ADD UNIQUE KEY `username` (`ten_dang_nhap`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -146,13 +179,13 @@ ALTER TABLE `lop_hoc_chi_tiet`
 -- AUTO_INCREMENT for table `hoc_vien`
 --
 ALTER TABLE `hoc_vien`
-  MODIFY `ma_hoc_vien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ma_hoc_vien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `khoa_hoc`
 --
 ALTER TABLE `khoa_hoc`
-  MODIFY `ma_khoa_hoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ma_khoa_hoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `lop_hoc`
@@ -165,6 +198,12 @@ ALTER TABLE `lop_hoc`
 --
 ALTER TABLE `lop_hoc_chi_tiet`
   MODIFY `ma_lop_hoc` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tai_khoan`
+--
+ALTER TABLE `tai_khoan`
+  MODIFY `ma_tai_khoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
