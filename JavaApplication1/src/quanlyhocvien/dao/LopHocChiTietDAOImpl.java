@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import quanlyhocvien.model.HocVienLopHoc;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
+import quanlyhocvien.model.LopHocChiTiet;
 
 /**
  *
@@ -75,6 +77,43 @@ public class LopHocChiTietDAOImpl implements LopHocChiTietDAO{
             return list;
             } catch (SQLException ex) {
                   ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    @Override
+    public LopHocChiTiet getThongTinLopHoc(int ma_lop_hoc) {
+        try {
+            Connection conn = DBConnect.getConnection();
+            LopHocChiTiet lopHocChiTiet = new LopHocChiTiet();
+            String sql = "SELECT * FROM `lop_hoc_chi_tiet` where `ma_lop_hoc` = ? and `tinh_trang` = 1";
+            PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
+            ps.setInt(1, ma_lop_hoc);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HocVienLopHoc hocVienLopHoc = new HocVienLopHoc();
+               
+                hocVienLopHoc.setMa_hoc_vien(rs.getInt("ma_hoc_vien"));
+                hocVienLopHoc.setNgay_dang_ky(rs.getDate("ngay_dang_ky"));
+                hocVienLopHoc.setThanh_toan(rs.getBoolean("thanh_toan"));
+                hocVienLopHoc.setTinh_trang(rs.getBoolean("tinh_trang"));
+
+                lopHocChiTiet.setMaLopHoc(rs.getInt("ma_lop_hoc"));
+                lopHocChiTiet.setListHvlh(hocVienLopHoc);
+                
+//                System.out.println(rs.getBoolean(ss"tinh_trang"));
+//                System.out.println(hocVienLopHoc.getMa_hoc_vien());
+      
+
+            }
+            for (HocVienLopHoc s : lopHocChiTiet.getListHvlh()) {
+                    System.out.println("ma hoc vien:" +s.getMa_hoc_vien());
+                }
+            ps.close();
+            conn.close();
+            return lopHocChiTiet;
+        } catch (SQLException ex) {
+            Logger.getLogger(KhoaHocDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

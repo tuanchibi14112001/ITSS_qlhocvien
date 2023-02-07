@@ -11,6 +11,7 @@ import quanlyhocvien.dao.LopHocDAO;
 import quanlyhocvien.dao.LopHocDAOImpl;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
+import quanlyhocvien.model.LopHocChiTiet;
 
 /**
  *
@@ -27,5 +28,8 @@ public class LopHocChiTietServiceImpl implements LopHocChiTietService{
         return lopHocChiTietDAO.getList();
     }
     
-    
+    @Override
+    public LopHocChiTiet getThongTinLopHoc(int ma_lop_hoc) {
+        return lopHocChiTietDAO.getThongTinLopHoc(ma_lop_hoc);
+    }
 }
