@@ -15,4 +15,6 @@ public interface HocVienService {
 
     public int createOrUpdate(HocVien hoc_vien);
 
+    public int removeStudentFromClass(HocVien hoc_vien);
+
 }

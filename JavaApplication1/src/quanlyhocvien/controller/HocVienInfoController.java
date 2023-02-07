@@ -94,6 +94,9 @@ public class HocVienInfoController {
                         if (lastId != 0) {
                             hoc_vien.setMa_hoc_vien(lastId);
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
+                            if(!hoc_vien.isTinh_trang()){
+                                hoc_vien_service.removeStudentFromClass(hoc_vien);
+                            }
                             hoc_vien_controller.setDatatoTable(hoc_vien_controller);
                             hoc_vien_controller.setEven(hoc_vien_controller);
                         } else {
