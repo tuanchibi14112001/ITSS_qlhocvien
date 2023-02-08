@@ -8,6 +8,7 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -27,7 +28,7 @@ import quanlyhocvien.service.LopHocServiceImpl;
 public class LopHocInfoController {
     private JButton btn_submit;
     private JList jlist_khoahoc;
-    private JTextField jtf_lichhoc;
+    private JList jlist_lichhoc;
     private JLabel jlb_msg;
     private JCheckBox jcb_tinhtrang;
     private LopHoc lop_hoc;
@@ -36,10 +37,10 @@ public class LopHocInfoController {
     public LopHocInfoController() {
     }
 
-    public LopHocInfoController(JButton btn_submit, JTextField jtf_lichhoc, 
+    public LopHocInfoController(JButton btn_submit, JList jlist_lichhoc, 
             JList jlist_khoahoc, JLabel jlb_msg, JCheckBox jcb_tinhtrang) {
         this.btn_submit = btn_submit;
-        this.jtf_lichhoc = jtf_lichhoc;
+        this.jlist_lichhoc = jlist_lichhoc;
         this.jlb_msg = jlb_msg;
         this.jcb_tinhtrang = jcb_tinhtrang;
         this.jlist_khoahoc = jlist_khoahoc;
@@ -47,14 +48,21 @@ public class LopHocInfoController {
         
     } 
 
-    public void setView(LopHoc lop_hoc) {
+    public void setView(LopHoc lop_hoc, List<KhoaHoc> listKhoaHoc, List<String> listLichHoc, String lichHoc) {
         this.lop_hoc = lop_hoc;
-        jtf_lichhoc.setText(lop_hoc.getLich_hoc());
-                            System.out.println(lop_hoc.getKhoaHoc().getMa_khoa_hoc());
-
-        jlist_khoahoc.setSelectedIndex(lop_hoc.getKhoaHoc().getMa_khoa_hoc()-1);
-
+//                            System.out.println(lop_hoc.getKhoaHoc().getMa_khoa_hoc());
+                            
+        for (int i = 0; i < listKhoaHoc.size(); i++) {
+            if (lop_hoc.getKhoaHoc().getMa_khoa_hoc() == listKhoaHoc.get(i).getMa_khoa_hoc()) {
+                jlist_khoahoc.setSelectedIndex(i);
+            }
+        }  
         
+        for (int i = 0; i < listLichHoc.size(); i++) {
+            if (lichHoc.equals(listLichHoc.get(i))) {
+                jlist_lichhoc.setSelectedIndex(i);
+            }
+        }  
         
         jcb_tinhtrang.setSelected(lop_hoc.isTinh_trang());
         
@@ -66,28 +74,23 @@ public class LopHocInfoController {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!checkNotNull()) {
-                    jlb_msg.setText("Vui lòng nhập thông tin bắt buộc!");
-                } else {
-                    KhoaHoc khoa_hoc= new KhoaHoc();
-                    String s = (String) jlist_khoahoc.getSelectedValue();
-                    khoa_hoc.setMa_khoa_hoc(Integer.parseInt(s.substring(0, 1)));
-                    lop_hoc.setKhoaHoc(khoa_hoc);
-                    lop_hoc.setLich_hoc(jtf_lichhoc.getText().trim());
-                    lop_hoc.setTinh_trang(jcb_tinhtrang.isSelected());
+                KhoaHoc khoa_hoc= new KhoaHoc();
+                String s = (String) jlist_khoahoc.getSelectedValue();
+                khoa_hoc.setMa_khoa_hoc(Integer.parseInt(s.substring(0, 1)));
+                lop_hoc.setKhoaHoc(khoa_hoc);
+                lop_hoc.setLich_hoc((String)jlist_lichhoc.getSelectedValue());
+                lop_hoc.setTinh_trang(jcb_tinhtrang.isSelected());
                     
-                    if (showDialog()) {
-                        int lastId = lop_hoc_service.createOrUpdate(lop_hoc, khoa_hoc);
-                        if (lastId != 0) {
-                            lop_hoc.setMa_lop_hoc(lastId);
-                            jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
+                if (showDialog()) {
+                    int lastId = lop_hoc_service.createOrUpdate(lop_hoc, khoa_hoc);
+                    if (lastId != 0) {
+                        lop_hoc.setMa_lop_hoc(lastId);
+                        jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
                             
-                        } else {
-                            jlb_msg.setText("Có lỗi xảy ra, vui lòng thử lại!");
+                    } else {
+                        jlb_msg.setText("Có lỗi xảy ra, vui lòng thử lại!");
                             
-                        }
                     }
-
                 }
 
             }
@@ -106,12 +109,6 @@ public class LopHocInfoController {
 
     }
 
-    private boolean checkNotNull() {
-        if (jtf_lichhoc.getText().length() == 0 ) {
-            return false;
-        }
-        return true;
-    }
 
     private boolean showDialog() {
         int dialogResult = JOptionPane.showConfirmDialog(null,

@@ -23,20 +23,26 @@ import quanlyhocvien.model.LopHoc;
  * @author xuannang
  */
 public class LopHocInfoJFrame extends javax.swing.JFrame {
+    private List<KhoaHoc> listKhoaHoc = null;
+    private List<String> listLichHoc = null;
+    
 
     /**
      * Creates new form LopHocInfoJFrame
      */
-    public LopHocInfoJFrame(LopHoc lop_hoc) {
+    public LopHocInfoJFrame(LopHoc lop_hoc, String lichHoc) {
+        this.listKhoaHoc = new ArrayList<>();
+        this.listLichHoc = new ArrayList<>();
         initComponents();
         initData();
-        LopHocInfoController controller = new LopHocInfoController(btn_submit,jtf_lichhoc, jlist_khoahoc, jlb_msg, jcb_trangthai);
-        controller.setView(lop_hoc);
+        LopHocInfoController controller = new LopHocInfoController(btn_submit,jlist_lichoc, jlist_khoahoc, jlb_msg, jcb_trangthai);
+        controller.setView(lop_hoc, listKhoaHoc, listLichHoc, lichHoc);
         controller.setEven();
     }
     
     private void initData(){
         DefaultListModel model = new DefaultListModel();
+        DefaultListModel model1 = new DefaultListModel();
         
         try {
             Connection cons = DBConnect.getConnection();
@@ -45,9 +51,35 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
             PreparedStatement ps = cons.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                KhoaHoc khoaHoc = new KhoaHoc();
+                khoaHoc.setMa_khoa_hoc(rs.getInt("ma_khoa_hoc"));
+                khoaHoc.setTen_khoa_hoc(rs.getString("ten_khoa_hoc"));
+                khoaHoc.setTrinh_do(rs.getString("trinh_do"));
+                khoaHoc.setHoc_phi(rs.getInt("hoc_phi"));
+                khoaHoc.setMo_ta(rs.getString("mo_ta"));
+                khoaHoc.setNgay_bat_dau(rs.getDate("ngay_bat_dau"));
+                khoaHoc.setNgay_ket_thuc(rs.getDate("ngay_ket_thuc"));
+                khoaHoc.setTinh_trang(rs.getBoolean("tinh_trang_kh"));
+                list.add(khoaHoc);
                 model.addElement(rs.getInt("ma_khoa_hoc") +".   "+rs.getString("ten_khoa_hoc") + " (" +
                         rs.getDate("ngay_bat_dau")+ " - "+ rs.getDate("ngay_ket_thuc")  + ")");
             }
+            
+            model1.addElement("Thứ 2, 4, 6 hàng tuần - 7h30-9h30");
+            model1.addElement("Thứ 2, 4, 6 hàng tuần - 15h30-17h30");
+            model1.addElement("Thứ 2, 4, 6 hàng tuần - 19h30-21h30");
+            model1.addElement("Thứ 3, 5, 7 hàng tuần - 7h30-9h30");
+            model1.addElement("Thứ 3, 5, 7 hàng tuần - 15h30-17h30");
+            model1.addElement("Thứ 3, 5, 7 hàng tuần - 19h30-21h30");
+            
+            listLichHoc.add("Thứ 2, 4, 6 hàng tuần - 7h30-9h30");
+            listLichHoc.add("Thứ 2, 4, 6 hàng tuần - 15h30-17h30");
+            listLichHoc.add("Thứ 2, 4, 6 hàng tuần - 19h30-21h30");
+            listLichHoc.add("Thứ 3, 5, 7 hàng tuần - 7h30-9h30");
+            listLichHoc.add("Thứ 3, 5, 7 hàng tuần - 15h30-17h30");
+            listLichHoc.add("Thứ 3, 5, 7 hàng tuần - 19h30-21h30");
+            
+            listKhoaHoc = list;
             ps.close();
             rs.close();
             cons.close();
@@ -57,7 +89,7 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
         
         
         jlist_khoahoc.setModel(model);
-        
+        jlist_lichoc.setModel(model1);
     }
 
     /**
@@ -78,7 +110,8 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jListKhoaHoc = new javax.swing.JScrollPane();
         jlist_khoahoc = new javax.swing.JList<>();
-        jtf_lichhoc = new javax.swing.JTextField();
+        jListLichHoc = new javax.swing.JScrollPane();
+        jlist_lichoc = new javax.swing.JList<>();
         jlb_msg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -114,12 +147,8 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
         jlist_khoahoc.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jListKhoaHoc.setViewportView(jlist_khoahoc);
 
-        jtf_lichhoc.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
-        jtf_lichhoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_lichhocActionPerformed(evt);
-            }
-        });
+        jlist_lichoc.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jListLichHoc.setViewportView(jlist_lichoc);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,21 +156,22 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jcb_trangthai))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jcb_trangthai)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtf_lichhoc, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                            .addComponent(jListKhoaHoc))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jListLichHoc))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jListKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(50, 50, 50))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,16 +180,21 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jListKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jtf_lichhoc, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jListKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(96, 96, 96))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jListLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(jcb_trangthai))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
 
         jlb_msg.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
@@ -173,7 +208,7 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlb_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -184,8 +219,7 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
                     .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlb_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,10 +245,6 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_submitActionPerformed
 
-    private void jtf_lichhocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_lichhocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_lichhocActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -225,11 +255,12 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jListKhoaHoc;
+    private javax.swing.JScrollPane jListLichHoc;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JCheckBox jcb_trangthai;
     private javax.swing.JLabel jlb_msg;
     private javax.swing.JList<String> jlist_khoahoc;
-    private javax.swing.JTextField jtf_lichhoc;
+    private javax.swing.JList<String> jlist_lichoc;
     // End of variables declaration//GEN-END:variables
 }
