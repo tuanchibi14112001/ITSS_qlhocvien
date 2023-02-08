@@ -106,4 +106,30 @@ public class HocVienDAOIplm implements HocVienDAO {
         return 0;
     }
 
+    @Override
+    public int removeStudentFromClass(HocVien hoc_vien) {
+        try {
+            Connection conn = DBConnect.getConnection();
+            String sql = "UPDATE lop_hoc_chi_tiet SET  tinh_trang = 0 WHERE lop_hoc_chi_tiet.ma_hoc_vien = ?;";
+            PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
+            ps.setInt(1, hoc_vien.getMa_hoc_vien());
+            ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+            return 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAOIplm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+//    public static void main(String[] args) {
+//        HocVien hv = new HocVien();
+//        hv.setTinh_trang(true);
+//        hv.setMa_hoc_vien(1);
+//        HocVienDAO hvdao = new HocVienDAOIplm();
+//        hvdao.removeStudentFromClass(hv);
+//    }
+
 }
