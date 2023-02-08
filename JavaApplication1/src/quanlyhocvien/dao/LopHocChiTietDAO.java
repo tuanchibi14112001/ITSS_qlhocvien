@@ -6,6 +6,7 @@ package quanlyhocvien.dao;
 
 import java.util.List;
 import quanlyhocvien.model.HocVien;
+import quanlyhocvien.model.HocVienLopHoc;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
 import quanlyhocvien.model.LopHocChiTiet;
@@ -17,5 +18,7 @@ import quanlyhocvien.model.LopHocChiTiet;
 public interface LopHocChiTietDAO {
     public List<LopHoc> getList();
     public LopHocChiTiet getThongTinLopHoc(int ma_lop_hoc);
-//    public int createOrUpdate(LopHoc lop_hoc, KhoaHoc khoa_hoc);
+    public HocVienLopHoc getHocVienLopHoc(int ma_lop_hoc, int ma_hoc_vien);
+    public int createOrUpdate(int ma_lop_hoc, HocVienLopHoc hocVienLopHoc, int ma_hoc_vien);
+    public List<HocVien> getListHocVienChuaThem(int ma_lop_hoc);
 }

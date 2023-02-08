@@ -39,12 +39,16 @@ import quanlyhocvien.service.LopHocChiTietServiceImpl;
 import quanlyhocvien.service.LopHocService;
 import quanlyhocvien.service.LopHocServiceImpl;
 import quanlyhocvien.utility.ClassTableModel;
+import quanlyhocvien.view.ChonHocVienJFrame;
+import quanlyhocvien.view.LopHocInfoJFrame;
+import quanlyhocvien.view.ThemThongTinHocVienJFrame;
 
 /**
  *
  * @author xuannang
  */
 public class LopHocChiTietInfoController {
+    private int ma_lop_hoc;
     private JPanel jpn_view;
     private JButton btn_add;
     private JTextField jtf_search;
@@ -57,7 +61,8 @@ public class LopHocChiTietInfoController {
     private LopHocService lop_hoc_service = null;
     private LopHocChiTietService lop_hoc_chi_tiet_service = null;
     private String[] listColumnThongTinHvLop = {"Mã lớp học", "STT", "Họ tên", "Ngày sinh", "Giới Tính", "Email", "Số điện thoại", "Ngày đăng ký", "Thanh Toán"};
-
+    private HocVien hocVien;
+    private HocVienLopHoc hocVienLopHoc;
 
     public LopHocChiTietInfoController() {
     }
@@ -72,10 +77,15 @@ public class LopHocChiTietInfoController {
         this.jlb_lichhoc = jlb_lichhoc;
         this.lop_hoc_chi_tiet_service = new LopHocChiTietServiceImpl();
         this.lop_hoc_service = new LopHocServiceImpl();
+        this.hoc_vien_service = new HocVienServiceImpl();
+        this.hocVien = new HocVien();
+        this.hocVienLopHoc = new HocVienLopHoc();
         
     } 
 
     public void setView(int ma_lop_hoc, List<HocVien> listHv) {
+        this.ma_lop_hoc = ma_lop_hoc;
+        
         LopHoc lopHoc = new LopHoc();
         lopHoc = lop_hoc_service.getLopHocID(ma_lop_hoc);
         
@@ -135,6 +145,39 @@ public class LopHocChiTietInfoController {
             }
         });
         
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() > 1 && table.getSelectedRow() != -1) {//click 2 lan va co hang trong bang
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    int selectedRowIndex = table.getSelectedRow();
+                    selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+                    //System.out.println(selectedRowIndex);
+
+                    HocVien hoc_vien = new HocVien();
+                    hoc_vien = hoc_vien_service.getHocVienID((int) model.getValueAt(selectedRowIndex, 0));
+                   
+                    hocVien = hoc_vien;
+                    
+                    
+                    HocVienLopHoc hoc_vien_lop_hoc = new HocVienLopHoc();
+                    hoc_vien_lop_hoc = lop_hoc_chi_tiet_service.getHocVienLopHoc(ma_lop_hoc, hoc_vien.getMa_hoc_vien());
+                    
+                    hocVienLopHoc = hoc_vien_lop_hoc;
+                    
+
+                    //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
+                    ThemThongTinHocVienJFrame frame = new ThemThongTinHocVienJFrame(ma_lop_hoc, hoc_vien_lop_hoc, hoc_vien);
+                    frame.setTitle("Thông tin chi tiết");
+                    frame.setResizable(false);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+
+                }
+            }
+
+        });
+        
         
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));
@@ -152,5 +195,32 @@ public class LopHocChiTietInfoController {
         jpn_view.add(scroll);
         jpn_view.validate();//xac nhan
         jpn_view.repaint();
+    }
+    
+    public void setEven() {
+        btn_add.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println(".mouseClicked()");
+                ChonHocVienJFrame frame = new ChonHocVienJFrame(ma_lop_hoc);
+                frame.setTitle("Thông tin học viên");
+                frame.setResizable(false);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btn_add.setBackground(new Color(0, 200, 83));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btn_add.setBackground(new Color(100, 221, 23));
+            }
+
+        });
     }
 }
