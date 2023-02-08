@@ -106,9 +106,9 @@ public class LopHocChiTietDAOImpl implements LopHocChiTietDAO{
       
 
             }
-            for (HocVienLopHoc s : lopHocChiTiet.getListHvlh()) {
-                    System.out.println("ma hoc vien:" +s.getMa_hoc_vien());
-                }
+//            for (HocVienLopHoc s : lopHocChiTiet.getListHvlh()) {
+//                    System.out.println("ma hoc vien:" +s.getMa_hoc_vien());
+//                }
             ps.close();
             conn.close();
             return lopHocChiTiet;

@@ -141,7 +141,7 @@ public class ClassTableModel {
                 
                 lop_hoc = listItem.get(i);
                 
-                System.out.println("si so" +lop_hoc.getSySo());
+//                System.out.println("si so" +lop_hoc.getSySo());
                 obj = new Object[cols];
                 obj[0] = lop_hoc.getMa_lop_hoc();
                 obj[1] = i + 1;
@@ -159,7 +159,7 @@ public class ClassTableModel {
         return dtm;
     }
     
-    public DefaultTableModel setTableThongTinLop(List<HocVienLopHoc> listItem1, String[] listColumn) {
+    public DefaultTableModel setTableThongTinLop(List<HocVienLopHoc> listHvlh,List<HocVien> listHv, String[] listColumn) {
         DefaultTableModel dtm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -168,27 +168,44 @@ public class ClassTableModel {
             }
         };
         dtm.setColumnIdentifiers(listColumn);
+//        obj[0], STT trong lop, Ho ten, ngay sinh, sdt, gioi tinh, email , ngay dang ky, thanh toan
         int cols = listColumn.length;
         Object[] obj = null;
-        int rows = listItem1.size();
-        LopHoc lop_hoc = null;
+        int rows = listHvlh.size();
+        HocVien hoc_vien = null;
+        HocVienLopHoc hoc_vien_lop_hoc = null;
         if (rows > 0) {
             for (int i = 0; i < rows; i++) {
                 
-                lop_hoc = listItem.get(i);
-                
-                System.out.println("si so" +lop_hoc.getSySo());
+//                lop_hoc = listItem.get(i);
+                hoc_vien = listHv.get(i);
+                hoc_vien_lop_hoc = listHvlh.get(i);
+
                 obj = new Object[cols];
-                obj[0] = lop_hoc.getMa_lop_hoc();
+                obj[0] = hoc_vien.getMa_hoc_vien();
                 obj[1] = i + 1;
-                obj[2] = lop_hoc.getKhoaHoc().getTen_khoa_hoc();
-                obj[3] = lop_hoc.getLich_hoc();
+                obj[2] = hoc_vien.getHo_ten();
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                obj[4] = formatter.format(lop_hoc.getKhoaHoc().getNgay_bat_dau());
+                obj[3] = formatter.format(hoc_vien.getNgay_sinh());
+                if (hoc_vien.getGioi_tinh() == 1) {
+                    obj[4] = "Nam";
+                } else if (hoc_vien.getGioi_tinh() == 0) {
+                    obj[4] = "Nữ";
+                } else {
+                    obj[4] = "Khác";
+                }
+                obj[5] = hoc_vien.getEmail();
+                obj[6] = hoc_vien.getSo_dien_thoai();
                 SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
-                obj[5] = formatter2.format(lop_hoc.getKhoaHoc().getNgay_ket_thuc());
-                obj[6] = lop_hoc.getSySo();
+                obj[7] = formatter2.format(hoc_vien_lop_hoc.getNgay_dang_ky());
+                if (hoc_vien_lop_hoc.isThanh_toan()) {
+                    obj[8] = "Đã thanh toán";
+                }else {
+                    obj[8] = "Chưa thanh toán";
+                }
+                
                 dtm.addRow(obj);
+//                System.out.println(obj);
             }
         }
 
