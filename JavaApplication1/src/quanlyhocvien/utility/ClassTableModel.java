@@ -177,9 +177,15 @@ public class ClassTableModel {
         if (rows > 0) {
             for (int i = 0; i < rows; i++) {
                 
+
 //                lop_hoc = listItem.get(i);
                 hoc_vien = listHv.get(i);
                 hoc_vien_lop_hoc = listHvlh.get(i);
+
+
+                //lop_hoc = listItem.get(i);
+                
+//                System.out.println("si so" +lop_hoc.getSySo());
 
                 obj = new Object[cols];
                 obj[0] = hoc_vien.getMa_hoc_vien();
