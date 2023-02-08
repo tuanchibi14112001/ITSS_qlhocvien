@@ -30,6 +30,7 @@ import quanlyhocvien.view.LopHocInfoJFrame;
  * @author xuannang
  */
 public class LopHocController {
+    private String lichHoc= null;
     private JPanel jpn_view;
     private JButton jbt_add;
     private JTextField jtf_search;
@@ -41,6 +42,7 @@ public class LopHocController {
     }
 
     public LopHocController(JPanel jpn_view, JButton jbt_add, JTextField jtf_search) {
+        this.lichHoc = new String();
         this.jpn_view = jpn_view;
         this.jbt_add = jbt_add;
         this.jtf_search = jtf_search;
@@ -107,9 +109,11 @@ public class LopHocController {
 
                     LopHoc lop_hoc = new LopHoc();
                     lop_hoc = lop_hoc_service.getLopHocID((int) model.getValueAt(selectedRowIndex, 0));
+                    
+                    String lichHoc = (String) model.getValueAt(selectedRowIndex, 3);
 
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-                    LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc);
+                    LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc, lichHoc);
                     frame.setTitle("Thông tin chi tiết");
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
@@ -148,7 +152,7 @@ public class LopHocController {
                 khoa_hoc.setMa_khoa_hoc(1);
                 lop_hoc.setTinh_trang(true);
                 lop_hoc.setKhoaHoc(khoa_hoc);
-                LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc);
+                LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc, lichHoc);
                 frame.setTitle("Tạo lớp học mới");
                 frame.setResizable(false);
                 frame.setLocationRelativeTo(null);
