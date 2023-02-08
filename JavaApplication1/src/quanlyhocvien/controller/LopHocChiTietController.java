@@ -37,7 +37,6 @@ import quanlyhocvien.service.LopHocServiceImpl;
 import quanlyhocvien.utility.ClassTableModel;
 import quanlyhocvien.view.LopHocInfoJFrame;
 import quanlyhocvien.view.ThongTinCuTheLopJFrame;
-import quanlyhocvien.view.ThongTinCuTheLopJpanel;
 
 /**
  *
