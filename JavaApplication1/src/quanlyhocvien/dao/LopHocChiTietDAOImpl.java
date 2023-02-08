@@ -5,13 +5,17 @@
 package quanlyhocvien.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import quanlyhocvien.model.HocVien;
 import quanlyhocvien.model.HocVienLopHoc;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.model.LopHoc;
@@ -118,5 +122,105 @@ public class LopHocChiTietDAOImpl implements LopHocChiTietDAO{
         return null;
     }
     
+    @Override
+    public HocVienLopHoc getHocVienLopHoc(int ma_lop_hoc, int ma_hoc_vien) {
+        try {
+            Connection conn = DBConnect.getConnection();
+            HocVienLopHoc hocVienLopHoc = new HocVienLopHoc();
+            String sql = "SELECT * FROM `lop_hoc_chi_tiet` where `ma_lop_hoc` = ? and `ma_hoc_vien` = ? and `tinh_trang` = 1";
+            PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
+            ps.setInt(1, ma_lop_hoc);
+            ps.setInt(2, ma_hoc_vien);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                
+                hocVienLopHoc.setMa_hoc_vien(rs.getInt("ma_hoc_vien"));
+                hocVienLopHoc.setNgay_dang_ky(rs.getDate("ngay_dang_ky"));
+                hocVienLopHoc.setThanh_toan(rs.getBoolean("thanh_toan"));
+                hocVienLopHoc.setTinh_trang(rs.getBoolean("tinh_trang"));           
+      
+            }
+            ps.close();
+            conn.close();
+            return hocVienLopHoc;
+        } catch (SQLException ex) {
+            Logger.getLogger(KhoaHocDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    @Override
+    public int createOrUpdate(int ma_lop_hoc, HocVienLopHoc hocVienLopHoc, int ma_hoc_vien) {
+        try {
+            Connection conn = DBConnect.getConnection();
+            String sql = "INSERT INTO lop_hoc_chi_tiet(ma_lop_hoc, ma_hoc_vien, ngay_dang_ky,thanh_toan,tinh_trang) VALUES(?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE ma_lop_hoc = VALUES(ma_lop_hoc), ma_hoc_vien = VALUES(ma_hoc_vien), ngay_dang_ky = VALUES(ngay_dang_ky), thanh_toan = VALUES(thanh_toan), tinh_trang = VALUES(tinh_trang);";
+            PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, ma_lop_hoc);
+            ps.setInt(2, ma_hoc_vien);
+            ps.setDate(3, new Date(hocVienLopHoc.getNgay_dang_ky().getTime()));
+            ps.setBoolean(4, hocVienLopHoc.isThanh_toan());
+            ps.setBoolean(5, hocVienLopHoc.isTinh_trang());
+          
+            ps.execute();
+            ResultSet rs = ps.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+            ps.close();
+            conn.close();
+            return generatedKey;
+        } catch (SQLException ex) {
+            Logger.getLogger(LopHocChiTietDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    @Override
+    public List<HocVien> getListHocVienChuaThem(int ma_lop_hoc) {
+        try {
+            Connection conn = DBConnect.getConnection();
+            String sql = "SELECT hoc_vien.* FROM hoc_vien WHERE hoc_vien.tinh_trang = 1 and hoc_vien.ma_hoc_vien Not IN "
+                    + "(SELECT lop_hoc_chi_tiet.ma_hoc_vien FROM lop_hoc_chi_tiet WHERE lop_hoc_chi_tiet.ma_lop_hoc = ?) ORDER by hoc_vien.ho_ten ;";  
+            List<HocVien> list = new ArrayList<>();
+            PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
+            ps.setInt(1, ma_lop_hoc);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HocVien hoc_vien = new HocVien();
+                hoc_vien.setMa_hoc_vien(rs.getInt("ma_hoc_vien"));
+                hoc_vien.setHo_ten(rs.getString("ho_ten"));
+                hoc_vien.setNgay_sinh(rs.getDate("ngay_sinh"));
+                hoc_vien.setGioi_tinh(rs.getInt("gioi_tinh"));
+                hoc_vien.setSo_dien_thoai(rs.getString("so_dien_thoai"));
+                hoc_vien.setEmail(rs.getString("email"));
+                hoc_vien.setTinh_trang(rs.getBoolean("tinh_trang"));
+
+                list.add(hoc_vien);
+            }
+            ps.close();
+            conn.close();
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAOIplm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+//    public static void main(String[] args) throws ParseException {
+//        int ma_lop_hoc = 1;
+//        HocVienLopHoc hocVienLopHoc = new HocVienLopHoc();
+//        int ma_hoc_vien = 6;
+//        java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse("08/02/2023");
+//        
+//        hocVienLopHoc.setNgay_dang_ky(date);
+//        hocVienLopHoc.setThanh_toan(true);
+//        hocVienLopHoc.setTinh_trang(false);
+//        
+//        LopHocChiTietDAO lopHocChiTietDAO = new LopHocChiTietDAOImpl();
+//        int i = lopHocChiTietDAO.createOrUpdate(ma_lop_hoc, hocVienLopHoc, ma_hoc_vien);
+//        System.out.println("quanlyhocvien.dao.LopHocChiTietDAOImpl.main()" + i);
+//        
+//    }
 }
 

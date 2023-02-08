@@ -25,6 +25,7 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
                  jLabelGiaTriTenLop,jLabelGiaTriSiSo,jLabelGiaTriLichHoc);
         lop_hoc_chi_tiet_info_controller.setView(ma_lop_hoc, listHv);
         lop_hoc_chi_tiet_info_controller.setDatatoTable(listHvlh, listHv);
+        lop_hoc_chi_tiet_info_controller.setEven();
     }
 
     /**
