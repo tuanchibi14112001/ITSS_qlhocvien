@@ -13,6 +13,10 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -35,38 +39,56 @@ import quanlyhocvien.service.LopHocChiTietServiceImpl;
 import quanlyhocvien.service.LopHocService;
 import quanlyhocvien.service.LopHocServiceImpl;
 import quanlyhocvien.utility.ClassTableModel;
-import quanlyhocvien.view.LopHocInfoJFrame;
-import quanlyhocvien.view.ThongTinCuTheLopJFrame;
 
 /**
  *
  * @author xuannang
  */
-public class LopHocChiTietController {
+public class LopHocChiTietInfoController {
     private JPanel jpn_view;
-    private JButton jbt_add;
+    private JButton btn_add;
     private JTextField jtf_search;
+    private JLabel jlb_tenlop;
+    private JLabel jlb_siso;
+    private JLabel jlb_lichhoc;
+    private LopHoc lop_hoc;
     private TableRowSorter<TableModel> rowSorter = null;//sap xep hang
     private HocVienService hoc_vien_service = null;
-    private LopHocChiTietService lop_hoc_chi_tiet_service = null;
     private LopHocService lop_hoc_service = null;
-    private String[] listColumn = {"Mã lớp học", "STT", "Tên khóa học", "Lịch học", "Ngày bắt đầu", "Ngày kết thúc", "Sĩ số"};
+    private LopHocChiTietService lop_hoc_chi_tiet_service = null;
     private String[] listColumnThongTinHvLop = {"Mã lớp học", "STT", "Họ tên", "Ngày sinh", "Giới Tính", "Email", "Số điện thoại", "Ngày đăng ký", "Thanh Toán"};
 
-    public LopHocChiTietController() {
+
+    public LopHocChiTietInfoController() {
     }
 
-    public LopHocChiTietController(JPanel jpn_view, JTextField jtf_search) {
+    public LopHocChiTietInfoController(JPanel jpn_view,JButton btn_add, JTextField jtf_search, JLabel jlb_tenlop, JLabel jlb_siso,
+              JLabel jlb_lichhoc) {
         this.jpn_view = jpn_view;
+        this.btn_add = btn_add;
         this.jtf_search = jtf_search;
+        this.jlb_tenlop = jlb_tenlop;
+        this.jlb_siso = jlb_siso;
+        this.jlb_lichhoc = jlb_lichhoc;
         this.lop_hoc_chi_tiet_service = new LopHocChiTietServiceImpl();
         this.lop_hoc_service = new LopHocServiceImpl();
-        this.hoc_vien_service = new HocVienServiceImpl();
+        
+    } 
+
+    public void setView(int ma_lop_hoc, List<HocVien> listHv) {
+        LopHoc lopHoc = new LopHoc();
+        lopHoc = lop_hoc_service.getLopHocID(ma_lop_hoc);
+        
+        System.out.println("quanlyhocvien.controller.LopHocChiTietInfoController.setView()" + lopHoc.getMa_lop_hoc());
+        
+        jlb_tenlop.setText(lopHoc.getKhoaHoc().getTen_khoa_hoc());      
+        jlb_siso.setText(String.valueOf(listHv.size()));
+        jlb_lichhoc.setText(lopHoc.getLich_hoc());
+            
     }
 
-    public void setDatatoTable() {
-        List<LopHoc> listItem = lop_hoc_chi_tiet_service.getList();
-        DefaultTableModel model = new ClassTableModel().setTableLopHocChiTiet(listItem, listColumn);
+    public void setDatatoTable(List<HocVienLopHoc> listHvlh, List<HocVien> listHv) {
+        DefaultTableModel model = new ClassTableModel().setTableThongTinLop(listHvlh, listHv, listColumnThongTinHvLop);
         JTable table = new JTable(model);
         rowSorter = new TableRowSorter<>(table.getModel());
         table.setRowSorter(rowSorter);
@@ -114,50 +136,6 @@ public class LopHocChiTietController {
         });
         
         
-        
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                
-                
-                List<HocVien> listThongTinHv = new ArrayList<HocVien>();
-                
-                if (e.getClickCount() > 1 && table.getSelectedRow() != -1) {//click 2 lan va co hang trong bang
-                    DefaultTableModel model = (DefaultTableModel) table.getModel();
-                    int selectedRowIndex = table.getSelectedRow();
-                    selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
-                    //System.out.println(selectedRowIndex);
-                    
-                    LopHoc lop_hoc = new LopHoc();
-                    lop_hoc = lop_hoc_service.getLopHocID((int) model.getValueAt(selectedRowIndex, 0));
-
-                    LopHocChiTiet lop_hoc_chi_tiet = new LopHocChiTiet();
-                    lop_hoc_chi_tiet = lop_hoc_chi_tiet_service.getThongTinLopHoc((int) model.getValueAt(selectedRowIndex, 0));                    
-                    
-                    for (HocVienLopHoc hoc_vien_lop_hoc : lop_hoc_chi_tiet.getListHvlh()) {
-                        int ma_hoc_vien = hoc_vien_lop_hoc.getMa_hoc_vien();
-                            
-                        HocVien hocVien = new HocVien();
-                        hocVien = hoc_vien_service.getHocVienID(ma_hoc_vien);
-                        listThongTinHv.add(hocVien);
-
-                    }
-                    
-                    
-                    
-                    
-//                    ThongTinCuTheLopJpanel panel = new ThongTinCuTheLopJpanel(lop_hoc_chi_tiet.getMaLopHoc(), lop_hoc_chi_tiet.getListHvlh(), listThongTinHv);
-                    ThongTinCuTheLopJFrame frame = new ThongTinCuTheLopJFrame(lop_hoc.getMa_lop_hoc(), 
-                            lop_hoc_chi_tiet.getListHvlh(), listThongTinHv);
-                    frame.setResizable(false);
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-//                    System.out.println(lop_hoc_chi_tiet);
-                }
-            }
-
-        });
-        
         table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));
         table.setRowHeight(50);
@@ -175,36 +153,4 @@ public class LopHocChiTietController {
         jpn_view.validate();//xac nhan
         jpn_view.repaint();
     }
-    
-//    public void setEven() {
-//        jbt_add.addMouseListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                LopHoc lop_hoc = new LopHoc();
-//                KhoaHoc khoa_hoc = new KhoaHoc();
-//                khoa_hoc.setMa_khoa_hoc(1);
-//                lop_hoc.setTinh_trang(true);
-//                lop_hoc.setKhoaHoc(khoa_hoc);
-//                LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc);
-//                frame.setTitle("Tạo lớp học mới");
-//                frame.setResizable(false);
-//                frame.setLocationRelativeTo(null);
-//                frame.setVisible(true);
-//
-//            }
-//
-//            @Override
-//            public void mouseEntered(MouseEvent e) {
-//                jbt_add.setBackground(new Color(0, 200, 83));
-//            }
-//
-//            @Override
-//            public void mouseExited(MouseEvent e) {
-//                jbt_add.setBackground(new Color(100, 221, 23));
-//            }
-//
-//        });
-//    }
 }
-
