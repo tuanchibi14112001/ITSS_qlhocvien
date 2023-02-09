@@ -21,7 +21,7 @@ public class HocVienDAOIplm implements HocVienDAO {
     public List<HocVien> getList() {
         try {
             Connection conn = DBConnect.getConnection();
-            String sql = "SELECT * FROM hoc_vien WHERE tinh_trang =1 ORDER BY ma_hoc_vien DESC";
+            String sql = "SELECT * FROM hoc_vien WHERE tinh_trang =1 ORDER BY ho_ten";
             List<HocVien> list = new ArrayList<>();
             PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
