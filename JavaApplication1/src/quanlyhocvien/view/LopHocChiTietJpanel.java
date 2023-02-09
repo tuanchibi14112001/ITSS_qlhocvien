@@ -18,9 +18,9 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
      */
     public LopHocChiTietJpanel() {
         initComponents();
-        LopHocChiTietController lop_hoc_chi_tiet_controller = new LopHocChiTietController(jpn_view, jtf_search);
+        LopHocChiTietController lop_hoc_chi_tiet_controller = new LopHocChiTietController(jpn_view,btn_print, jtf_search);
         lop_hoc_chi_tiet_controller.setDatatoTable();
-//        lop_hoc_chi_tiet_controller.setEven();
+        lop_hoc_chi_tiet_controller.setEven();
     }
 
     /**
@@ -35,6 +35,7 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
         jpn_root = new javax.swing.JPanel();
         jtf_search = new javax.swing.JTextField();
         jpn_view = new javax.swing.JPanel();
+        btn_print = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
@@ -57,6 +58,16 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
             .addGap(0, 235, Short.MAX_VALUE)
         );
 
+        btn_print.setBackground(new java.awt.Color(76, 175, 80));
+        btn_print.setForeground(new java.awt.Color(255, 255, 255));
+        btn_print.setText("+Xuất file");
+        btn_print.setActionCommand("+Xuất file");
+        btn_print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_printActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Tìm theo tên:");
 
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
@@ -68,19 +79,24 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 226, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpn_rootLayout.setVerticalGroup(
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
-                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtf_search)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtf_search)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        btn_print.getAccessibleContext().setAccessibleName("+Xuất file");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,8 +120,13 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_searchActionPerformed
 
+    private void btn_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_printActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_printActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_print;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpn_root;
     private javax.swing.JPanel jpn_view;
