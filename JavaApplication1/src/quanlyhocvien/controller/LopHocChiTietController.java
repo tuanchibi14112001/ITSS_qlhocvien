@@ -81,7 +81,7 @@ public class LopHocChiTietController {
         this.listLopHoc = new ArrayList<>();
     }
 
-    public void setDatatoTable() {
+    public void setDatatoTable(LopHocChiTietController lopHocChiTietController) {
         List<LopHoc> listItem = lop_hoc_chi_tiet_service.getList();
         listLopHoc = listItem;
         DefaultTableModel model = new ClassTableModel().setTableLopHocChiTiet(listItem, listColumn);
@@ -159,8 +159,7 @@ public class LopHocChiTietController {
                     }
 
 //                    ThongTinCuTheLopJpanel panel = new ThongTinCuTheLopJpanel(lop_hoc_chi_tiet.getMaLopHoc(), lop_hoc_chi_tiet.getListHvlh(), listThongTinHv);
-                    ThongTinCuTheLopJFrame frame = new ThongTinCuTheLopJFrame(lop_hoc.getMa_lop_hoc(),
-                            lop_hoc_chi_tiet.getListHvlh(), listThongTinHv);
+                    ThongTinCuTheLopJFrame frame = new ThongTinCuTheLopJFrame(lop_hoc.getMa_lop_hoc(), lopHocChiTietController);
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);

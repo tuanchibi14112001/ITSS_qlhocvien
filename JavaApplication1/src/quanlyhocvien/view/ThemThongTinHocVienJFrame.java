@@ -5,9 +5,12 @@
 package quanlyhocvien.view;
 
 import com.toedter.calendar.JDateChooser;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import quanlyhocvien.controller.ChonHocVienController;
+import quanlyhocvien.controller.LopHocChiTietController;
 import quanlyhocvien.controller.LopHocChiTietInfoController;
 import quanlyhocvien.controller.ThemThongTinHocVienController;
 import quanlyhocvien.model.HocVien;
@@ -29,6 +32,23 @@ public class ThemThongTinHocVienJFrame extends javax.swing.JFrame {
                 jLabelGiaTriSdt,  jLabelGiaTriEmail,jdc_ngaydangki,  jcb_tinhtranghocphi,  jcb_trangthai);
         them_thong_tin_hv_controller.setView(hocVienLopHoc, hocVien);
         them_thong_tin_hv_controller.setEven(ma_lop_hoc, hocVienLopHoc, hocVien.getMa_hoc_vien());
+    }
+    public ThemThongTinHocVienJFrame(int ma_lop_hoc, HocVienLopHoc hocVienLopHoc, HocVien hocVien,LopHocChiTietInfoController lopHocChiTietInfoController, LopHocChiTietController lopHocChiTietController) {
+        initComponents();
+        
+        ThemThongTinHocVienController them_thong_tin_hv_controller = new ThemThongTinHocVienController( btn_submit,  jlb_msg,  jLabelGiaTriHoten,  
+                jLabelGiaTriSdt,  jLabelGiaTriEmail,jdc_ngaydangki,  jcb_tinhtranghocphi,  jcb_trangthai);
+        them_thong_tin_hv_controller.setView(hocVienLopHoc, hocVien);
+        them_thong_tin_hv_controller.setEven(ma_lop_hoc, hocVienLopHoc, hocVien.getMa_hoc_vien(),lopHocChiTietInfoController, lopHocChiTietController);
+    }
+    
+    public ThemThongTinHocVienJFrame(int ma_lop_hoc, HocVienLopHoc hocVienLopHoc, HocVien hocVien, ChonHocVienController chonHocVienController, LopHocChiTietInfoController lopHocChiTietInfoController, LopHocChiTietController lopHocChiTietController) {
+        initComponents();
+        
+        ThemThongTinHocVienController them_thong_tin_hv_controller = new ThemThongTinHocVienController( btn_submit,  jlb_msg,  jLabelGiaTriHoten,  
+                jLabelGiaTriSdt,  jLabelGiaTriEmail,jdc_ngaydangki,  jcb_tinhtranghocphi,  jcb_trangthai);
+        them_thong_tin_hv_controller.setView(hocVienLopHoc, hocVien);
+        them_thong_tin_hv_controller.setEven(ma_lop_hoc, hocVienLopHoc, hocVien.getMa_hoc_vien(), chonHocVienController, lopHocChiTietInfoController, lopHocChiTietController);
     }
 
     /**

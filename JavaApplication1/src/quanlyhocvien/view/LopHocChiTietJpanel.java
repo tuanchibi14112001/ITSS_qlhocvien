@@ -19,7 +19,7 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
     public LopHocChiTietJpanel() {
         initComponents();
         LopHocChiTietController lop_hoc_chi_tiet_controller = new LopHocChiTietController(jpn_view,btn_print, jtf_search);
-        lop_hoc_chi_tiet_controller.setDatatoTable();
+        lop_hoc_chi_tiet_controller.setDatatoTable(lop_hoc_chi_tiet_controller);
         lop_hoc_chi_tiet_controller.setEven();
     }
 

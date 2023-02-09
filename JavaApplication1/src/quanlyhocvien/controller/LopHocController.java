@@ -49,7 +49,7 @@ public class LopHocController {
         this.lop_hoc_service = new LopHocServiceImpl();
     }
 
-    public void setDatatoTable() {
+    public void setDatatoTable(LopHocController lopHocController) {
         List<LopHoc> listItem = lop_hoc_service.getList();
         DefaultTableModel model = new ClassTableModel().setTableLopHoc(listItem, listColumn);
         JTable table = new JTable(model);
@@ -113,7 +113,7 @@ public class LopHocController {
                     String lichHoc = (String) model.getValueAt(selectedRowIndex, 3);
 
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-                    LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc, lichHoc);
+                    LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc, lichHoc, lopHocController);
                     frame.setTitle("Thông tin chi tiết");
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
@@ -142,7 +142,7 @@ public class LopHocController {
         jpn_view.repaint();
     }
     
-    public void setEven() {
+    public void setEven(LopHocController lopHocController) {
         jbt_add.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -152,7 +152,7 @@ public class LopHocController {
                 khoa_hoc.setMa_khoa_hoc(1);
                 lop_hoc.setTinh_trang(true);
                 lop_hoc.setKhoaHoc(khoa_hoc);
-                LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc, lichHoc);
+                LopHocInfoJFrame frame = new LopHocInfoJFrame(lop_hoc, lichHoc, lopHocController);
                 frame.setTitle("Tạo lớp học mới");
                 frame.setResizable(false);
                 frame.setLocationRelativeTo(null);

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import quanlyhocvien.controller.LopHocController;
 import quanlyhocvien.controller.LopHocInfoController;
 import quanlyhocvien.dao.DBConnect;
 import quanlyhocvien.model.KhoaHoc;
@@ -30,14 +31,14 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
     /**
      * Creates new form LopHocInfoJFrame
      */
-    public LopHocInfoJFrame(LopHoc lop_hoc, String lichHoc) {
+    public LopHocInfoJFrame(LopHoc lop_hoc, String lichHoc,LopHocController lopHocController) {
         this.listKhoaHoc = new ArrayList<>();
         this.listLichHoc = new ArrayList<>();
         initComponents();
         initData();
         LopHocInfoController controller = new LopHocInfoController(btn_submit,jlist_lichoc, jlist_khoahoc, jlb_msg, jcb_trangthai);
         controller.setView(lop_hoc, listKhoaHoc, listLichHoc, lichHoc);
-        controller.setEven();
+        controller.setEven(lopHocController);
     }
     
     private void initData(){
