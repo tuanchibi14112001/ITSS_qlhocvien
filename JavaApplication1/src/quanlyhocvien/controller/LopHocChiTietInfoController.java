@@ -10,8 +10,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -27,6 +33,11 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import quanlyhocvien.model.HocVien;
 import quanlyhocvien.model.HocVienLopHoc;
 import quanlyhocvien.model.KhoaHoc;
@@ -51,6 +62,7 @@ public class LopHocChiTietInfoController {
     private int ma_lop_hoc;
     private JPanel jpn_view;
     private JButton btn_add;
+    private JButton btn_print;
     private JTextField jtf_search;
     private JLabel jlb_tenlop;
     private JLabel jlb_siso;
@@ -59,6 +71,7 @@ public class LopHocChiTietInfoController {
     private TableRowSorter<TableModel> rowSorter = null;//sap xep hang
     private HocVienService hoc_vien_service = null;
     private LopHocService lop_hoc_service = null;
+    
     private LopHocChiTietService lop_hoc_chi_tiet_service = null;
     private String[] listColumnThongTinHvLop = {"Mã lớp học", "STT", "Họ tên", "Ngày sinh", "Giới Tính", "Email", "Số điện thoại", "Ngày đăng ký", "Thanh Toán"};
     private HocVien hocVien;
@@ -67,10 +80,11 @@ public class LopHocChiTietInfoController {
     public LopHocChiTietInfoController() {
     }
 
-    public LopHocChiTietInfoController(JPanel jpn_view,JButton btn_add, JTextField jtf_search, JLabel jlb_tenlop, JLabel jlb_siso,
+    public LopHocChiTietInfoController(JPanel jpn_view,JButton btn_add,JButton btn_print, JTextField jtf_search, JLabel jlb_tenlop, JLabel jlb_siso,
               JLabel jlb_lichhoc) {
         this.jpn_view = jpn_view;
         this.btn_add = btn_add;
+        this.btn_print = btn_print;
         this.jtf_search = jtf_search;
         this.jlb_tenlop = jlb_tenlop;
         this.jlb_siso = jlb_siso;
@@ -81,6 +95,7 @@ public class LopHocChiTietInfoController {
         this.hocVien = new HocVien();
         this.hocVienLopHoc = new HocVienLopHoc();
         
+        
     } 
 
     public void setView(int ma_lop_hoc, List<HocVien> listHv) {
@@ -89,7 +104,7 @@ public class LopHocChiTietInfoController {
         LopHoc lopHoc = new LopHoc();
         lopHoc = lop_hoc_service.getLopHocID(ma_lop_hoc);
         
-        System.out.println("quanlyhocvien.controller.LopHocChiTietInfoController.setView()" + lopHoc.getMa_lop_hoc());
+//        System.out.println("quanlyhocvien.controller.LopHocChiTietInfoController.setView()" + lopHoc.getMa_lop_hoc());
         
         jlb_tenlop.setText(lopHoc.getKhoaHoc().getTen_khoa_hoc());      
         jlb_siso.setText(String.valueOf(listHv.size()));
@@ -220,6 +235,116 @@ public class LopHocChiTietInfoController {
             public void mouseExited(MouseEvent e) {
                 btn_add.setBackground(new Color(100, 221, 23));
             }
+
+        });
+        
+        btn_print.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                LopHoc lopHoc = new LopHoc();
+                lopHoc =lop_hoc_service.getLopHocID(ma_lop_hoc);
+                
+                LopHocChiTiet lopHocChiTiet = new LopHocChiTiet();
+                lopHocChiTiet =lop_hoc_chi_tiet_service.getThongTinLopHoc(ma_lop_hoc);
+                
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("hv_tronglop");//tao trang tinh
+                XSSFRow row = null;
+                Cell cell = null;
+
+                row = sheet.createRow((short) 2);
+                row.setHeight((short) 500);
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue("DANH SÁCH HỌC VIÊN");
+
+                row = sheet.createRow(3);
+                row.setHeight((short) 500);
+
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue("STT");
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue("Họ và tên");
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue("Ngày sinh");
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue("Giới tính");
+                cell = row.createCell(4, CellType.STRING);
+                cell.setCellValue("Số điện thoại");
+                cell = row.createCell(5, CellType.STRING);
+                cell.setCellValue("Email");
+                cell = row.createCell(6, CellType.STRING);
+                cell.setCellValue("Ngày đăng ký");
+                cell = row.createCell(7, CellType.STRING);
+                cell.setCellValue("Thanh Toán");
+
+
+                List<HocVienLopHoc> listItem = lop_hoc_chi_tiet_service.getThongTinLopHoc(ma_lop_hoc).getListHvlh();
+
+                if (listItem != null) {
+                    FileOutputStream out = null;
+                    int s = listItem.size();
+                    for (int i = 0; i < s; i++) {
+                        HocVienLopHoc hoc_vien_lop_hoc = listItem.get(i);
+                        HocVien hoc_vien = hoc_vien_service.getHocVienID(hoc_vien_lop_hoc.getMa_hoc_vien());
+                        row = sheet.createRow((short) 4 + i);
+                        row.setHeight((short) 400);
+
+                        cell = row.createCell(0, CellType.NUMERIC);//o
+                        cell.setCellValue(i + 1);
+
+                        row.createCell(0).setCellValue(i + 1);
+                        row.createCell(1).setCellValue(hoc_vien.getHo_ten());
+                        row.createCell(2).setCellValue(hoc_vien.getNgay_sinh().toString());
+                        if (hoc_vien.getGioi_tinh() == 0) {
+                            row.createCell(3).setCellValue("Nữ");
+                        } else if (hoc_vien.getGioi_tinh() == 1) {
+                            row.createCell(3).setCellValue("Nam");
+
+                        } else {
+                            row.createCell(3).setCellValue("Khác");
+
+                        }
+                        row.createCell(4).setCellValue(hoc_vien.getSo_dien_thoai());
+                        row.createCell(5).setCellValue(hoc_vien.getEmail());
+                        row.createCell(6).setCellValue(hoc_vien_lop_hoc.getNgay_dang_ky().toString());
+                        
+                        if (hoc_vien_lop_hoc.isThanh_toan()== true) {
+                            row.createCell(7).setCellValue("Đã thanh toán");
+                        } else {
+                            row.createCell(7).setCellValue("Chưa thanh toán");
+
+                        }
+                    }
+
+                    File f = new File("../"+ lopHoc.getKhoaHoc().getTen_khoa_hoc()+ " - "+ lopHoc.getLich_hoc()+".xlsx");
+                    try {
+                        out = new FileOutputStream(f);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(HocVienController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        workbook.write(out);
+                        JOptionPane.showMessageDialog(
+                    null, 
+                    "Xuất file thành công!", 
+                    "About", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LopHocChiTietInfoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    try {
+                        out.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(LopHocChiTietInfoController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            }
+
+            
 
         });
     }
