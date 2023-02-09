@@ -265,12 +265,12 @@ public class LopHocChiTietInfoController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                btn_add.setBackground(new Color(0, 200, 83));
+//                btn_add.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                btn_add.setBackground(new Color(100, 221, 23));
+//                btn_add.setBackground(new Color(100, 221, 23));
             }
 
         });
