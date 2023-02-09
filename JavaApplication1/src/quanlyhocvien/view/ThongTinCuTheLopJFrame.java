@@ -21,7 +21,7 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
     public ThongTinCuTheLopJFrame(int ma_lop_hoc, List<HocVienLopHoc> listHvlh, List<HocVien> listHv) {
         initComponents();
         
-        LopHocChiTietInfoController lop_hoc_chi_tiet_info_controller = new LopHocChiTietInfoController(jpn_view,btn_add, jtf_search,
+        LopHocChiTietInfoController lop_hoc_chi_tiet_info_controller = new LopHocChiTietInfoController(jpn_view,btn_add, btn_print, jtf_search,
                  jLabelGiaTriTenLop,jLabelGiaTriSiSo,jLabelGiaTriLichHoc);
         lop_hoc_chi_tiet_info_controller.setView(ma_lop_hoc, listHv);
         lop_hoc_chi_tiet_info_controller.setDatatoTable(listHvlh, listHv);
@@ -48,6 +48,7 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
         jLabelGiaTriLichHoc = new javax.swing.JLabel();
         btn_add = new javax.swing.JButton();
         jpn_view = new javax.swing.JPanel();
+        btn_print = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -100,6 +101,17 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
             .addGap(0, 433, Short.MAX_VALUE)
         );
 
+        btn_print.setBackground(new java.awt.Color(76, 175, 80));
+        btn_print.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btn_print.setForeground(new java.awt.Color(255, 255, 255));
+        btn_print.setActionCommand("+Xuất file");
+        btn_print.setLabel("+Xuất file");
+        btn_print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_printActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
         jpn_root.setLayout(jpn_rootLayout);
         jpn_rootLayout.setHorizontalGroup(
@@ -124,7 +136,9 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
                 .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 501, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
+                .addComponent(btn_print)
+                .addGap(27, 27, 27)
                 .addComponent(btn_add)
                 .addContainerGap())
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,7 +162,8 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
                 .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtf_search)
-                    .addComponent(btn_add, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                    .addComponent(btn_add, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(btn_print, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jpn_view, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -179,6 +194,10 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_addActionPerformed
 
+    private void btn_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_printActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_printActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -186,6 +205,7 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_add;
+    private javax.swing.JButton btn_print;
     private javax.swing.JLabel jLabelGiaTriLichHoc;
     private javax.swing.JLabel jLabelGiaTriSiSo;
     private javax.swing.JLabel jLabelGiaTriTenLop;
