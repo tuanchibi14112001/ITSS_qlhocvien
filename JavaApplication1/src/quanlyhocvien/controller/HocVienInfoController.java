@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 import quanlyhocvien.model.HocVien;
 import quanlyhocvien.service.HocVienService;
 import quanlyhocvien.service.HocVienServiceImpl;
+import quanlyhocvien.view.HocVienInfoJFrame;
+import quanlyhocvien.view.SendMailJFrame;
 
 /**
  *
@@ -21,6 +23,7 @@ import quanlyhocvien.service.HocVienServiceImpl;
 public class HocVienInfoController {
 
     private JButton btn_submit;
+    private JButton jbt_sendmail;
     private JTextField jtf_hoten;
     private JDateChooser jdc_ngaysinh;
     private JRadioButton jrb_nam;
@@ -36,9 +39,11 @@ public class HocVienInfoController {
     public HocVienInfoController() {
     }
 
-    public HocVienInfoController(JButton btn_submit, JTextField jtf_hoten, JDateChooser jdc_ngaysinh,
-            JRadioButton jrb_nam, JRadioButton jrb_nu, JRadioButton jrb_khac, JTextField jtf_phone, JTextField jtf_email, JLabel jlb_msg, JCheckBox jcb_tinhtrang) {
+    public HocVienInfoController(JButton btn_submit, JButton jbt_sendmail,JTextField jtf_hoten, JDateChooser jdc_ngaysinh,
+            JRadioButton jrb_nam, JRadioButton jrb_nu, JRadioButton jrb_khac, 
+            JTextField jtf_phone, JTextField jtf_email, JLabel jlb_msg, JCheckBox jcb_tinhtrang) {
         this.btn_submit = btn_submit;
+        this.jbt_sendmail = jbt_sendmail;
         this.jtf_hoten = jtf_hoten;
         this.jdc_ngaysinh = jdc_ngaysinh;
         this.jrb_nam = jrb_nam;
@@ -94,7 +99,7 @@ public class HocVienInfoController {
                         if (lastId != 0) {
                             hoc_vien.setMa_hoc_vien(lastId);
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
-                            if(!hoc_vien.isTinh_trang()){
+                            if (!hoc_vien.isTinh_trang()) {
                                 hoc_vien_service.removeStudentFromClass(hoc_vien);
                             }
                             hoc_vien_controller.setDatatoTable(hoc_vien_controller);
@@ -106,6 +111,30 @@ public class HocVienInfoController {
                     }
 
                 }
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btn_submit.setBackground(new Color(0, 200, 83));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btn_submit.setBackground(new Color(76, 175, 80));
+            }
+
+        });
+        
+        jbt_sendmail.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                SendMailJFrame frame = new SendMailJFrame(hoc_vien.getEmail());
+                
+                frame.setResizable(false);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
 
             }
 
