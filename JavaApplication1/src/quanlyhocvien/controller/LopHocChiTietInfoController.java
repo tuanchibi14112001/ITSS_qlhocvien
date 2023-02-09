@@ -100,9 +100,9 @@ public class LopHocChiTietInfoController {
     }
 
     public void setView(int ma_lop_hoc) {
-        
+
         List<HocVien> listThongTinHv = new ArrayList<HocVien>();
-        
+
         LopHocChiTiet lop_hoc_chi_tiet = new LopHocChiTiet();
         lop_hoc_chi_tiet = lop_hoc_chi_tiet_service.getThongTinLopHoc(ma_lop_hoc);
 
@@ -129,7 +129,7 @@ public class LopHocChiTietInfoController {
 
     public void setDatatoTable(int ma_lop_hoc, LopHocChiTietInfoController lopHocChiTietInfoController, LopHocChiTietController lopHocChiTietController) {
         List<HocVien> listThongTinHv = new ArrayList<HocVien>();
-        
+
         LopHocChiTiet lop_hoc_chi_tiet = new LopHocChiTiet();
         lop_hoc_chi_tiet = lop_hoc_chi_tiet_service.getThongTinLopHoc(ma_lop_hoc);
 
@@ -141,7 +141,7 @@ public class LopHocChiTietInfoController {
             listThongTinHv.add(hocVien);
 
         }
-        
+
         DefaultTableModel model = new ClassTableModel().setTableThongTinLop(lop_hoc_chi_tiet.getListHvlh(), listThongTinHv, listColumnThongTinHvLop);
         JTable table = new JTable(model);
         rowSorter = new TableRowSorter<>(table.getModel());
@@ -211,6 +211,8 @@ public class LopHocChiTietInfoController {
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
                     ThemThongTinHocVienJFrame frame = new ThemThongTinHocVienJFrame(ma_lop_hoc, hoc_vien_lop_hoc, hoc_vien, lopHocChiTietInfoController, lopHocChiTietController);
                     frame.setTitle("Thông tin chi tiết");
+                    //frame.setPreferredSize(new Dimension(1000, 1200));
+
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
@@ -223,10 +225,10 @@ public class LopHocChiTietInfoController {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         table.setDefaultRenderer(String.class, centerRenderer);
-        
-        int i =0;
-        for(i = 0 ; i<table.getColumnCount(); i++){
-                  table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+
+        int i = 0;
+        for (i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 
         }
 
@@ -237,6 +239,16 @@ public class LopHocChiTietInfoController {
         table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        //table.getColumnModel().getColumn(1).setMaxWidth(55);
+        table.getColumnModel().getColumn(1).setMinWidth(55);
+        table.getColumnModel().getColumn(1).setPreferredWidth(55);
+        table.getColumnModel().getColumn(5).setMaxWidth(300);
+        table.getColumnModel().getColumn(5).setMinWidth(300);
+        table.getColumnModel().getColumn(5).setPreferredWidth(300);
+//        table.getColumnModel().getColumn(7).setMaxWidth(200);
+//        table.getColumnModel().getColumn(7).setMinWidth(200);
+//        table.getColumnModel().getColumn(7).setPreferredWidth(200);
         //table.getColumnModel().getColumn(1).setPreferredWidth(10);
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);

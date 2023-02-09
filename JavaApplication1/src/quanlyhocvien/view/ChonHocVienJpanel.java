@@ -41,7 +41,7 @@ public class ChonHocVienJpanel extends javax.swing.JPanel {
         );
         jpn_viewLayout.setVerticalGroup(
             jpn_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 231, Short.MAX_VALUE)
+            .addGap(0, 298, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
@@ -56,7 +56,7 @@ public class ChonHocVienJpanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 226, Short.MAX_VALUE))
+                .addGap(0, 486, Short.MAX_VALUE))
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpn_rootLayout.setVerticalGroup(
