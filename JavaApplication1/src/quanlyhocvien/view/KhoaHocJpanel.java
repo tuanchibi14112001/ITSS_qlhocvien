@@ -17,7 +17,7 @@ public class KhoaHocJpanel extends javax.swing.JPanel {
      */
     public KhoaHocJpanel() {
         initComponents();
-        KhoaHocController khoa_hoc_controller = new KhoaHocController(jpn_view, btn_add, jtf_search);
+        KhoaHocController khoa_hoc_controller = new KhoaHocController(jpn_view, btn_print, btn_add, jtf_search);
         khoa_hoc_controller.setDatatoTable(khoa_hoc_controller);
         khoa_hoc_controller.setEven(khoa_hoc_controller);
     }

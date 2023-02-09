@@ -175,12 +175,12 @@ public class LopHocController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                jbt_add.setBackground(new Color(0, 200, 83));
+//                jbt_add.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                jbt_add.setBackground(new Color(100, 221, 23));
+//                jbt_add.setBackground(new Color(100, 221, 23));
             }
 
         });

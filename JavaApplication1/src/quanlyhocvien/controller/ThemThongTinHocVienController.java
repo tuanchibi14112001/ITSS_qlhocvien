@@ -108,12 +108,12 @@ public class ThemThongTinHocVienController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                btn_submit.setBackground(new Color(0, 200, 83));
+//                btn_submit.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                btn_submit.setBackground(new Color(76, 175, 80));
+//                btn_submit.setBackground(new Color(76, 175, 80));
             }
 
         });
@@ -159,12 +159,12 @@ public class ThemThongTinHocVienController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                btn_submit.setBackground(new Color(0, 200, 83));
+//                btn_submit.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                btn_submit.setBackground(new Color(76, 175, 80));
+//                btn_submit.setBackground(new Color(76, 175, 80));
             }
 
         });
@@ -207,12 +207,12 @@ public class ThemThongTinHocVienController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                btn_submit.setBackground(new Color(0, 200, 83));
+//                btn_submit.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                btn_submit.setBackground(new Color(76, 175, 80));
+//                btn_submit.setBackground(new Color(76, 175, 80));
             }
 
         });
