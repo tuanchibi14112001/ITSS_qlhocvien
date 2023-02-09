@@ -7,6 +7,8 @@ package quanlyhocvien.view;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import quanlyhocvien.controller.ChonHocVienController;
+import quanlyhocvien.controller.LopHocChiTietController;
+import quanlyhocvien.controller.LopHocChiTietInfoController;
 import quanlyhocvien.controller.ThemThongTinHocVienController;
 
 /**
@@ -18,11 +20,11 @@ public class ChonHocVienJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ChonHocVienJFrame
      */
-    public ChonHocVienJFrame(int ma_lop_hoc) {
+    public ChonHocVienJFrame(int ma_lop_hoc, LopHocChiTietInfoController lopHocChiTietInfoController, LopHocChiTietController lopHocChiTietController) {
         initComponents();
         
         ChonHocVienController chon_hoc_vien_controller = new ChonHocVienController(jpn_view, jtf_search, ma_lop_hoc);
-         chon_hoc_vien_controller.setDatatoTable();
+         chon_hoc_vien_controller.setDatatoTable(chon_hoc_vien_controller, lopHocChiTietInfoController, lopHocChiTietController);
 
     }
 

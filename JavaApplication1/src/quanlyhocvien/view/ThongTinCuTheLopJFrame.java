@@ -5,6 +5,7 @@
 package quanlyhocvien.view;
 
 import java.util.List;
+import quanlyhocvien.controller.LopHocChiTietController;
 import quanlyhocvien.controller.LopHocChiTietInfoController;
 import quanlyhocvien.model.HocVien;
 import quanlyhocvien.model.HocVienLopHoc;
@@ -18,14 +19,16 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ThongTinCuTheLopJFrame
      */
-    public ThongTinCuTheLopJFrame(int ma_lop_hoc, List<HocVienLopHoc> listHvlh, List<HocVien> listHv) {
+    public ThongTinCuTheLopJFrame(int ma_lop_hoc, LopHocChiTietController lopHocChiTietController) {
+//        , List<HocVienLopHoc> listHvlh, List<HocVien> listHv
+        
         initComponents();
         
         LopHocChiTietInfoController lop_hoc_chi_tiet_info_controller = new LopHocChiTietInfoController(jpn_view,btn_add, btn_print, jtf_search,
                  jLabelGiaTriTenLop,jLabelGiaTriSiSo,jLabelGiaTriLichHoc);
-        lop_hoc_chi_tiet_info_controller.setView(ma_lop_hoc, listHv);
-        lop_hoc_chi_tiet_info_controller.setDatatoTable(listHvlh, listHv);
-        lop_hoc_chi_tiet_info_controller.setEven();
+        lop_hoc_chi_tiet_info_controller.setView(ma_lop_hoc);
+        lop_hoc_chi_tiet_info_controller.setDatatoTable(ma_lop_hoc, lop_hoc_chi_tiet_info_controller, lopHocChiTietController);
+        lop_hoc_chi_tiet_info_controller.setEven(lop_hoc_chi_tiet_info_controller, lopHocChiTietController);
     }
 
     /**

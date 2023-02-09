@@ -76,7 +76,7 @@ public class ChonHocVienController {
     }
 
 
-    public void setDatatoTable() {
+    public void setDatatoTable(ChonHocVienController chonHocVienController, LopHocChiTietInfoController lopHocChiTietInfoController, LopHocChiTietController lopHocChiTietController) {
         List<HocVien> listItem = lop_hoc_chi_tiet_service.getListHocVienChuaThem(ma_lop_hoc);
         DefaultTableModel model = new ClassTableModel().setTableHocVien(listItem, listColumn);
         JTable table = new JTable(model);
@@ -152,7 +152,7 @@ public class ChonHocVienController {
                     
 
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());
-                    ThemThongTinHocVienJFrame frame = new ThemThongTinHocVienJFrame(ma_lop_hoc,hocVienLopHoc, hocVien);
+                    ThemThongTinHocVienJFrame frame = new ThemThongTinHocVienJFrame(ma_lop_hoc,hocVienLopHoc, hocVien, chonHocVienController, lopHocChiTietInfoController, lopHocChiTietController);
                     frame.setTitle("Thông tin chi tiết");
                     frame.setResizable(false);
                     frame.setLocationRelativeTo(null);

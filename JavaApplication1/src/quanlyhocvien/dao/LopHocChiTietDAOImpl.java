@@ -181,7 +181,7 @@ public class LopHocChiTietDAOImpl implements LopHocChiTietDAO{
         try {
             Connection conn = DBConnect.getConnection();
             String sql = "SELECT hoc_vien.* FROM hoc_vien WHERE hoc_vien.tinh_trang = 1 and hoc_vien.ma_hoc_vien Not IN "
-                    + "(SELECT lop_hoc_chi_tiet.ma_hoc_vien FROM lop_hoc_chi_tiet WHERE lop_hoc_chi_tiet.ma_lop_hoc = ?) ORDER by hoc_vien.ho_ten ;";  
+                    + "(SELECT lop_hoc_chi_tiet.ma_hoc_vien FROM lop_hoc_chi_tiet WHERE  lop_hoc_chi_tiet.tinh_trang = 1 and lop_hoc_chi_tiet.ma_lop_hoc = ?) ORDER by hoc_vien.ho_ten ;";  
             List<HocVien> list = new ArrayList<>();
             PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
             ps.setInt(1, ma_lop_hoc);

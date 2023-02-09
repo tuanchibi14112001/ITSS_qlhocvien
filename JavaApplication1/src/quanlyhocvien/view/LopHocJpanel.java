@@ -18,8 +18,8 @@ public class LopHocJpanel extends javax.swing.JPanel {
     public LopHocJpanel() {
         initComponents();
         LopHocController lop_hoc_controller = new LopHocController(jpn_view, btn_add, jtf_search);
-        lop_hoc_controller.setDatatoTable();
-        lop_hoc_controller.setEven();
+        lop_hoc_controller.setDatatoTable(lop_hoc_controller);
+        lop_hoc_controller.setEven(lop_hoc_controller);
     }
 
     /**
