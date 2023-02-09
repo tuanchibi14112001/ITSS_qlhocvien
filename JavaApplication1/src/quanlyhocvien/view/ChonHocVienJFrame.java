@@ -44,7 +44,7 @@ public class ChonHocVienJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
+        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 20)); // NOI18N
 
         javax.swing.GroupLayout jpn_viewLayout = new javax.swing.GroupLayout(jpn_view);
         jpn_view.setLayout(jpn_viewLayout);
@@ -54,9 +54,10 @@ public class ChonHocVienJFrame extends javax.swing.JFrame {
         );
         jpn_viewLayout.setVerticalGroup(
             jpn_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGap(0, 307, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel1.setText("Tìm theo tên:");
 
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
@@ -65,8 +66,8 @@ public class ChonHocVienJFrame extends javax.swing.JFrame {
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 296, Short.MAX_VALUE))
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -74,10 +75,12 @@ public class ChonHocVienJFrame extends javax.swing.JFrame {
         jpn_rootLayout.setVerticalGroup(
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
-                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtf_search)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpn_rootLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jtf_search, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );

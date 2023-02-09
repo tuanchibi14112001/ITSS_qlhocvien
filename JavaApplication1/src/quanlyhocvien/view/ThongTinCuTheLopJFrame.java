@@ -55,7 +55,7 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelSearch.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabelSearch.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabelSearch.setText("Tìm theo tên:");
 
         jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
@@ -65,28 +65,28 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabelTenLop.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabelTenLop.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabelTenLop.setText("Lớp :");
 
-        jLabelGiaTriTenLop.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabelGiaTriTenLop.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabelGiaTriTenLop.setText("jLabel2");
 
-        jLabelSiSo.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabelSiSo.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabelSiSo.setText("Số học viên :");
 
-        jLabelGiaTriSiSo.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabelGiaTriSiSo.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabelGiaTriSiSo.setText("jLabel2");
 
-        jLabelLichHoc.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabelLichHoc.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabelLichHoc.setText("Lịch học :");
 
-        jLabelGiaTriLichHoc.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabelGiaTriLichHoc.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabelGiaTriLichHoc.setText("jLabel2");
 
         btn_add.setBackground(new java.awt.Color(76, 175, 80));
-        btn_add.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btn_add.setFont(new java.awt.Font("Liberation Sans", 0, 22)); // NOI18N
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
-        btn_add.setText("+Thêm học viên");
+        btn_add.setText("Thêm học viên");
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addActionPerformed(evt);
@@ -105,10 +105,10 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
         );
 
         btn_print.setBackground(new java.awt.Color(76, 175, 80));
-        btn_print.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btn_print.setFont(new java.awt.Font("Liberation Sans", 0, 22)); // NOI18N
         btn_print.setForeground(new java.awt.Color(255, 255, 255));
+        btn_print.setText("Xuất file");
         btn_print.setActionCommand("+Xuất file");
-        btn_print.setLabel("+Xuất file");
         btn_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_printActionPerformed(evt);
@@ -127,19 +127,19 @@ public class ThongTinCuTheLopJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabelGiaTriTenLop))
                     .addGroup(jpn_rootLayout.createSequentialGroup()
-                        .addComponent(jLabelSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabelSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelGiaTriSiSo))
                     .addGroup(jpn_rootLayout.createSequentialGroup()
-                        .addComponent(jLabelLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabelLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelGiaTriLichHoc)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpn_rootLayout.createSequentialGroup()
-                .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
                 .addComponent(btn_print)
                 .addGap(27, 27, 27)
                 .addComponent(btn_add)

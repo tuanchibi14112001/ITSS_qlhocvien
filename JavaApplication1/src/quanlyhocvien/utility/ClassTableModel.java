@@ -17,6 +17,7 @@ public class ClassTableModel {
 
     public DefaultTableModel setTableHocVien(List<HocVien> listItem, String[] listColumn) {
         DefaultTableModel dtm = new DefaultTableModel() {
+            
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;

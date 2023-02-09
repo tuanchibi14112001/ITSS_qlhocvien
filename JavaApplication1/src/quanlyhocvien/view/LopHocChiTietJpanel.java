@@ -38,7 +38,7 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
         btn_print = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
+        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 22)); // NOI18N
         jtf_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_searchActionPerformed(evt);
@@ -55,19 +55,20 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
         );
         jpn_viewLayout.setVerticalGroup(
             jpn_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
+            .addGap(0, 229, Short.MAX_VALUE)
         );
 
         btn_print.setBackground(new java.awt.Color(76, 175, 80));
+        btn_print.setFont(new java.awt.Font("Liberation Sans", 0, 22)); // NOI18N
         btn_print.setForeground(new java.awt.Color(255, 255, 255));
-        btn_print.setText("+Xuất file");
-        btn_print.setActionCommand("+Xuất file");
+        btn_print.setText("Xuất file");
         btn_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_printActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel1.setText("Tìm theo tên:");
 
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
@@ -76,8 +77,8 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(17, 17, 17)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -88,15 +89,13 @@ public class LopHocChiTietJpanel extends javax.swing.JPanel {
             .addGroup(jpn_rootLayout.createSequentialGroup()
                 .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtf_search)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        btn_print.getAccessibleContext().setAccessibleName("+Xuất file");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

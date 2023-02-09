@@ -127,7 +127,7 @@ public class LopHocChiTietDAOImpl implements LopHocChiTietDAO{
         try {
             Connection conn = DBConnect.getConnection();
             HocVienLopHoc hocVienLopHoc = new HocVienLopHoc();
-            String sql = "SELECT * FROM `lop_hoc_chi_tiet` where `ma_lop_hoc` = ? and `ma_hoc_vien` = ? and `tinh_trang` = 1";
+            String sql = "SELECT * FROM `lop_hoc_chi_tiet` where `ma_lop_hoc` = ? and `ma_hoc_vien` = ? and `tinh_trang` = 1 ";
             PreparedStatement ps = (PreparedStatement) (PreparedStatement) conn.prepareStatement(sql);
             ps.setInt(1, ma_lop_hoc);
             ps.setInt(2, ma_hoc_vien);

@@ -84,25 +84,31 @@ public class ThemThongTinHocVienJFrame extends javax.swing.JFrame {
         jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btn_submit.setBackground(new java.awt.Color(76, 175, 80));
-        btn_submit.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        btn_submit.setFont(new java.awt.Font("Liberation Sans", 1, 22)); // NOI18N
         btn_submit.setForeground(new java.awt.Color(255, 255, 255));
-        btn_submit.setText("+Lưu");
+        btn_submit.setText("Lưu");
         btn_submit.setBorder(null);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin học viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 17))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin học viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 22))); // NOI18N
         jPanel6.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
 
+        jLabel17.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel17.setText("Họ và tên:");
 
+        jLabel18.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel18.setText("Ngày đăng kí:");
 
+        jLabel20.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel20.setText("Số điện thoại:");
 
+        jLabel21.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel21.setText("Email:");
 
+        jLabel24.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel24.setText("Trạng thái:");
 
+        jLabel27.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel27.setText("Học phí:");
 
         jdc_ngaydangki.setDateFormatString("dd/MM/yyyy");
@@ -127,22 +133,22 @@ public class ThemThongTinHocVienJFrame extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jcb_trangthai))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(30, 30, 30)
                                 .addComponent(jcb_tinhtranghocphi)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 468, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel18))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -150,7 +156,7 @@ public class ThemThongTinHocVienJFrame extends javax.swing.JFrame {
                             .addComponent(jLabelGiaTriHoten, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelGiaTriSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jdc_ngaydangki, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(277, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +168,7 @@ public class ThemThongTinHocVienJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jLabelGiaTriSdt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(jLabelGiaTriSdt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
@@ -185,7 +191,7 @@ public class ThemThongTinHocVienJFrame extends javax.swing.JFrame {
                 .addGap(38, 38, 38))
         );
 
-        jlb_msg.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jlb_msg.setFont(new java.awt.Font("Liberation Sans", 1, 22)); // NOI18N
         jlb_msg.setForeground(new java.awt.Color(255, 0, 0));
         jlb_msg.setText("...");
 

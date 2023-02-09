@@ -36,15 +36,16 @@ public class HocVienJpanel extends javax.swing.JPanel {
         btn_print = new javax.swing.JButton();
 
         btn_add.setBackground(new java.awt.Color(76, 175, 80));
+        btn_add.setFont(new java.awt.Font("Liberation Sans", 0, 22)); // NOI18N
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
-        btn_add.setText("+Thêm mới");
+        btn_add.setText("Thêm mới");
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addActionPerformed(evt);
             }
         });
 
-        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
+        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 22)); // NOI18N
 
         javax.swing.GroupLayout jpn_viewLayout = new javax.swing.GroupLayout(jpn_view);
         jpn_view.setLayout(jpn_viewLayout);
@@ -54,14 +55,16 @@ public class HocVienJpanel extends javax.swing.JPanel {
         );
         jpn_viewLayout.setVerticalGroup(
             jpn_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 266, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel1.setText("Tìm theo tên:");
 
         btn_print.setBackground(new java.awt.Color(76, 175, 80));
+        btn_print.setFont(new java.awt.Font("Liberation Sans", 0, 22)); // NOI18N
         btn_print.setForeground(new java.awt.Color(255, 255, 255));
-        btn_print.setText("+In");
+        btn_print.setText("Xuất file");
         btn_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_printActionPerformed(evt);
@@ -73,24 +76,25 @@ public class HocVienJpanel extends javax.swing.JPanel {
         jpn_rootLayout.setHorizontalGroup(
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_add))
+                .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpn_rootLayout.setVerticalGroup(
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
-                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtf_search)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(btn_print, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())

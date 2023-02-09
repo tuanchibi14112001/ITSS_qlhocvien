@@ -148,7 +148,7 @@ public class ChonHocVienController {
                     HocVien hocVien = new HocVien();
                     hocVien = hoc_vien_service.getHocVienID(ma_hoc_vien);
                     
-                    System.out.println(hocVien.getHo_ten());
+                    //System.out.println(hocVien.getHo_ten());
                     
 
                     //hoc_vien.setHo_ten(model.getValueAt(selectedRowIndex, 2).toString());

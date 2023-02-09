@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -73,6 +75,7 @@ public class HocVienController {
         List<HocVien> listItem = hoc_vien_service.getList();
         DefaultTableModel model = new ClassTableModel().setTableHocVien(listItem, listColumn);
         JTable table = new JTable(model);
+
         rowSorter = new TableRowSorter<>(table.getModel());
         table.setRowSorter(rowSorter);
 
@@ -142,14 +145,24 @@ public class HocVienController {
             }
 
         });
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(String.class, centerRenderer);
+        
+        int i =0;
+        for(i = 0 ; i<table.getColumnCount(); i++){
+                  table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 
-        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+        }
+
+        table.getTableHeader().setFont(new Font("Yrsa", Font.BOLD, 27));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));
         table.setRowHeight(50);
-        table.setFont(new Font("Arial", Font.PLAIN, 14));
+        table.setFont(new Font("Yrsa", Font.PLAIN, 22));
         table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setPreferredWidth(0);
+        //table.getColumnModel().getColumn(1).setPreferredWidth(10);
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
         scroll.setPreferredSize(new Dimension(1350, 400));
@@ -176,12 +189,12 @@ public class HocVienController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                jbt_add.setBackground(new Color(0, 200, 83));
+                //jbt_add.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                jbt_add.setBackground(new Color(100, 221, 23));
+                //jbt_add.setBackground(new Color(100, 221, 23));
             }
 
         });
@@ -253,10 +266,10 @@ public class HocVienController {
                     try {
                         workbook.write(out);
                         JOptionPane.showMessageDialog(
-                    null, 
-                    "Tạo file hoc_vien.xlsx thành công!", 
-                    "About", 
-                    JOptionPane.INFORMATION_MESSAGE);
+                                null,
+                                "Tạo file hoc_vien.xlsx thành công!",
+                                "About",
+                                JOptionPane.INFORMATION_MESSAGE);
                     } catch (IOException ex) {
                         Logger.getLogger(HocVienController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -273,16 +286,16 @@ public class HocVienController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                jbt_add.setBackground(new Color(0, 200, 83));
+                //jbt_add.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                jbt_add.setBackground(new Color(100, 221, 23));
+              //  jbt_add.setBackground(new Color(100, 221, 23));
             }
 
         });
 
     }
-    
+
 }

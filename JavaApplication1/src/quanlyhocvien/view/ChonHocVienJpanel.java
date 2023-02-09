@@ -31,7 +31,7 @@ public class ChonHocVienJpanel extends javax.swing.JPanel {
         jpn_view = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
+        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 22)); // NOI18N
 
         javax.swing.GroupLayout jpn_viewLayout = new javax.swing.GroupLayout(jpn_view);
         jpn_view.setLayout(jpn_viewLayout);
@@ -41,9 +41,10 @@ public class ChonHocVienJpanel extends javax.swing.JPanel {
         );
         jpn_viewLayout.setVerticalGroup(
             jpn_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
+            .addGap(0, 231, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel1.setText("Tìm theo tên:");
 
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
@@ -52,8 +53,8 @@ public class ChonHocVienJpanel extends javax.swing.JPanel {
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 226, Short.MAX_VALUE))
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

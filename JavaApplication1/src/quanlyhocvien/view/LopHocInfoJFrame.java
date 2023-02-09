@@ -120,9 +120,9 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         btn_submit.setBackground(new java.awt.Color(76, 175, 80));
-        btn_submit.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        btn_submit.setFont(new java.awt.Font("Liberation Sans", 1, 22)); // NOI18N
         btn_submit.setForeground(new java.awt.Color(255, 255, 255));
-        btn_submit.setText("+Lưu");
+        btn_submit.setText("Lưu");
         btn_submit.setBorder(null);
         btn_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,24 +131,24 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin học viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 17))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin lớp học", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 22))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel1.setText("Khóa học:");
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel5.setText("Lịch học:");
 
         jcb_trangthai.setSelected(true);
 
-        jLabel8.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel8.setText("Trạng thái:");
 
-        jlist_khoahoc.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jlist_khoahoc.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jListKhoaHoc.setViewportView(jlist_khoahoc);
 
-        jlist_lichoc.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jlist_lichoc.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jListLichHoc.setViewportView(jlist_lichoc);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -182,10 +182,9 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jListKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addGap(96, 96, 96))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -198,7 +197,7 @@ public class LopHocInfoJFrame extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        jlb_msg.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jlb_msg.setFont(new java.awt.Font("Liberation Sans", 1, 22)); // NOI18N
         jlb_msg.setForeground(new java.awt.Color(255, 0, 0));
         jlb_msg.setText("...");
 

@@ -87,11 +87,11 @@ public class ThemThongTinHocVienController {
 
                     if (showDialog()) {
                         int lastId = lop_hoc_chi_tiet_service.createOrUpdate(ma_lop_hoc, hocVienLopHoc, ma_hoc_vien);
-                        System.out.println(ma_lop_hoc);
-                        System.out.println(hocVienLopHoc.getMa_hoc_vien());
-                        System.out.println(hocVienLopHoc.isThanh_toan());
-                        System.out.println(hocVienLopHoc.isTinh_trang());
-                        System.out.println(ma_hoc_vien);
+//                        System.out.println(ma_lop_hoc);
+//                        System.out.println(hocVienLopHoc.getMa_hoc_vien());
+//                        System.out.println(hocVienLopHoc.isThanh_toan());
+//                        System.out.println(hocVienLopHoc.isTinh_trang());
+//                        System.out.println(ma_hoc_vien);
 
                         if (lastId != 0) {
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
@@ -135,11 +135,11 @@ public class ThemThongTinHocVienController {
 
                     if (showDialog()) {
                         int lastId = lop_hoc_chi_tiet_service.createOrUpdate(ma_lop_hoc, hocVienLopHoc, ma_hoc_vien);
-                        System.out.println(ma_lop_hoc);
-                        System.out.println(hocVienLopHoc.getMa_hoc_vien());
-                        System.out.println(hocVienLopHoc.isThanh_toan());
-                        System.out.println(hocVienLopHoc.isTinh_trang());
-                        System.out.println(ma_hoc_vien);
+//                        System.out.println(ma_lop_hoc);
+//                        System.out.println(hocVienLopHoc.getMa_hoc_vien());
+//                        System.out.println(hocVienLopHoc.isThanh_toan());
+//                        System.out.println(hocVienLopHoc.isTinh_trang());
+//                        System.out.println(ma_hoc_vien);
 
                         if (lastId != 0) {
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");
@@ -186,11 +186,7 @@ public class ThemThongTinHocVienController {
 
                     if (showDialog()) {
                         int lastId = lop_hoc_chi_tiet_service.createOrUpdate(ma_lop_hoc, hocVienLopHoc, ma_hoc_vien);
-                        System.out.println(ma_lop_hoc);
-                        System.out.println(hocVienLopHoc.getMa_hoc_vien());
-                        System.out.println(hocVienLopHoc.isThanh_toan());
-                        System.out.println(hocVienLopHoc.isTinh_trang());
-                        System.out.println(ma_hoc_vien);
+                        
 
                         if (lastId != 0) {
                             jlb_msg.setText("Xử lý cập nhật dữ liệu thành công!");

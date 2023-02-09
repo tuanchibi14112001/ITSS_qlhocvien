@@ -38,15 +38,16 @@ public class LopHocJpanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         btn_add.setBackground(new java.awt.Color(76, 175, 80));
+        btn_add.setFont(new java.awt.Font("Liberation Sans", 0, 22)); // NOI18N
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
-        btn_add.setText("+Thêm mới");
+        btn_add.setText("Thêm mới");
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addActionPerformed(evt);
             }
         });
 
-        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 18)); // NOI18N
+        jtf_search.setFont(new java.awt.Font("Yrsa", 0, 22)); // NOI18N
         jtf_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_searchActionPerformed(evt);
@@ -66,6 +67,7 @@ public class LopHocJpanel extends javax.swing.JPanel {
             .addGap(0, 231, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 20)); // NOI18N
         jLabel1.setText("Tìm theo tên:");
 
         javax.swing.GroupLayout jpn_rootLayout = new javax.swing.GroupLayout(jpn_root);
@@ -74,10 +76,10 @@ public class LopHocJpanel extends javax.swing.JPanel {
             jpn_rootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpn_rootLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(btn_add))
             .addComponent(jpn_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );

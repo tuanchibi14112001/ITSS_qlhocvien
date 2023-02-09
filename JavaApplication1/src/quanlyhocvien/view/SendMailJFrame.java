@@ -91,26 +91,40 @@ public class SendMailJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         jLabel1.setText("SEND MAIL");
 
+        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel2.setText("EMAIL SEND:");
 
+        jtf_emailsend.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jtf_emailsend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_emailsendActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel3.setText("PASSWORD:");
 
+        jtf_password.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel4.setText("EMAIL TO:");
 
+        jtf_emailto.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel5.setText("SUBJECT:");
 
+        jtf_tieude.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel6.setText("MESSAGE:");
 
         txt_message.setColumns(20);
+        txt_message.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         txt_message.setRows(5);
         jScrollPane1.setViewportView(txt_message);
 
+        btn_submit.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         btn_submit.setText("SEND");
         btn_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +172,7 @@ public class SendMailJFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtf_tieude, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                                    .addComponent(jtf_tieude, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                                     .addComponent(jScrollPane1))))))
                 .addGap(124, 124, 124))
         );
@@ -189,7 +203,7 @@ public class SendMailJFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();

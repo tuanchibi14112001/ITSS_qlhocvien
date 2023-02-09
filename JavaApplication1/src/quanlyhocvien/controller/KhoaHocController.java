@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -120,13 +122,24 @@ public class KhoaHocController {
 
         });
 
-        table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setDefaultRenderer(String.class, centerRenderer);
+        
+        int i =0;
+        for(i = 0 ; i<table.getColumnCount(); i++){
+                  table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+
+        }
+
+        table.getTableHeader().setFont(new Font("Yrsa", Font.BOLD, 27));
         table.getTableHeader().setPreferredSize(new Dimension(50, 50));
         table.setRowHeight(50);
-        table.setFont(new Font("Arial", Font.PLAIN, 14));
+        table.setFont(new Font("Yrsa", Font.PLAIN, 22));
         table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setPreferredWidth(0);
+        //table.getColumnModel().getColumn(1).setPreferredWidth(10);
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);
         scroll.setPreferredSize(new Dimension(1350, 400));

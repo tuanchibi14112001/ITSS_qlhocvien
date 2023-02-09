@@ -28,11 +28,11 @@ public class DBConnect {
         
         return null;
     }
-    public static void main(String[] args) throws SQLException {
-        Connection coin = getConnection();
-        System.out.println(coin.toString());
-        coin.close();
-    }
+//    public static void main(String[] args) throws SQLException {
+//        Connection coin = getConnection();
+//        System.out.println(coin.toString());
+//        coin.close();
+//    }
 }
 
 
