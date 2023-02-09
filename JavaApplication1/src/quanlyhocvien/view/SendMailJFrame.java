@@ -26,8 +26,8 @@ public class SendMailJFrame extends javax.swing.JFrame {
     public SendMailJFrame(String email) {
         initComponents();
         this.jtf_emailto.setText(email);
-        this.jtf_emailsend.setText("tuanchibi14112001@gmail.com");
-        this.jtf_password.setText("xvfjatrnkerbznat");
+        this.jtf_emailsend.setText("tuanchibi141101@gmail.com");
+        this.jtf_password.setText("vgpesinpyjbowcru");
     }
 
     /**

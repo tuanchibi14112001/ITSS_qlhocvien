@@ -6,9 +6,16 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,6 +27,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import quanlyhocvien.model.HocVien;
 import quanlyhocvien.model.KhoaHoc;
 import quanlyhocvien.service.KhoaHocService;
 import quanlyhocvien.service.KhoaHocServiceImpl;
@@ -33,6 +46,7 @@ import quanlyhocvien.view.KhoaHocInfoJFrame;
 public class KhoaHocController {
     private JPanel jpn_view;
     private JButton jbt_add;
+    private JButton btn_print;
     private JTextField jtf_search;
     private TableRowSorter<TableModel> rowSorter = null;//sap xep hang
     private KhoaHocService khoa_hoc_service = null;
@@ -41,8 +55,9 @@ public class KhoaHocController {
     public KhoaHocController() {
     }
 
-    public KhoaHocController(JPanel jpn_view, JButton jbt_add, JTextField jtf_search) {
+    public KhoaHocController(JPanel jpn_view, JButton btn_print, JButton jbt_add, JTextField jtf_search) {
         this.jpn_view = jpn_view;
+        this.btn_print = btn_print;
         this.jbt_add = jbt_add;
         this.jtf_search = jtf_search;
         this.khoa_hoc_service = new KhoaHocServiceImpl();
@@ -169,12 +184,103 @@ public class KhoaHocController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                jbt_add.setBackground(new Color(0, 200, 83));
+//                jbt_add.setBackground(new Color(0, 200, 83));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                jbt_add.setBackground(new Color(100, 221, 23));
+//                jbt_add.setBackground(new Color(100, 221, 23));
+            }
+
+        });
+        
+        btn_print.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("KHOA_HOC");//tao trang tinh
+                XSSFRow row = null;
+                Cell cell = null;
+
+                row = sheet.createRow((short) 2);
+                row.setHeight((short) 500);
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue("DANH SÁCH KHÓA HỌC");
+
+                row = sheet.createRow(3);
+                row.setHeight((short) 500);
+
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue("STT");
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue("Tên khóa học");
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue("Trình độ");
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue("Học phí(VNĐ)");
+                cell = row.createCell(4, CellType.STRING);
+                cell.setCellValue("Ngày bắt đầu");
+                cell = row.createCell(5, CellType.STRING);
+                cell.setCellValue("Ngày kết thúc");
+
+                List<KhoaHoc> listItem = khoa_hoc_service.getList();
+
+                if (listItem != null) {
+                    FileOutputStream out = null;
+                    int s = listItem.size();
+                    for (int i = 0; i < s; i++) {
+                        KhoaHoc khoa_hoc = listItem.get(i);
+                        row = sheet.createRow((short) 4 + i);
+                        row.setHeight((short) 400);
+
+                        cell = row.createCell(0, CellType.NUMERIC);//o
+                        cell.setCellValue(i + 1);
+
+                        row.createCell(0).setCellValue(i + 1);
+                        row.createCell(1).setCellValue(khoa_hoc.getTen_khoa_hoc());
+                        row.createCell(2).setCellValue(khoa_hoc.getTrinh_do());
+                        
+                        row.createCell(3).setCellValue(khoa_hoc.getHoc_phi());
+                        
+                           
+                        row.createCell(4).setCellValue(khoa_hoc.getNgay_bat_dau().toString());
+                        row.createCell(5).setCellValue(khoa_hoc.getNgay_ket_thuc().toString());
+                    }
+                    File f = new File("../khoa_hoc.xlsx");
+                    try {
+                        out = new FileOutputStream(f);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(HocVienController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        workbook.write(out);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Tạo file khoa_hoc.xlsx thành công!",
+                                "About",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } catch (IOException ex) {
+                        Logger.getLogger(KhoaHocController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    try {
+                        out.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(KhoaHocController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                //jbt_add.setBackground(new Color(0, 200, 83));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+              //  jbt_add.setBackground(new Color(100, 221, 23));
             }
 
         });

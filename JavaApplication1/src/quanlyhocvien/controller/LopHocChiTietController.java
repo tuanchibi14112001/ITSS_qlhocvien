@@ -188,6 +188,9 @@ public class LopHocChiTietController {
         table.getColumnModel().getColumn(0).setMaxWidth(0);
         table.getColumnModel().getColumn(0).setMinWidth(0);
         table.getColumnModel().getColumn(0).setPreferredWidth(0);
+        table.getColumnModel().getColumn(3).setMaxWidth(400);
+        table.getColumnModel().getColumn(3).setMinWidth(400);
+        table.getColumnModel().getColumn(3).setPreferredWidth(400);
         //table.getColumnModel().getColumn(1).setPreferredWidth(10);
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(table);

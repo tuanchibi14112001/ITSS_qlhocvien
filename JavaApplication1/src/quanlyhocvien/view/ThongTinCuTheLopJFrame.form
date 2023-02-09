@@ -67,7 +67,7 @@
                   <Component id="jLabelSearch" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jtf_search" min="-2" pref="241" max="-2" attributes="0"/>
-                  <EmptySpace pref="345" max="32767" attributes="0"/>
+                  <EmptySpace pref="640" max="32767" attributes="0"/>
                   <Component id="btn_print" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="btn_add" min="-2" max="-2" attributes="0"/>
