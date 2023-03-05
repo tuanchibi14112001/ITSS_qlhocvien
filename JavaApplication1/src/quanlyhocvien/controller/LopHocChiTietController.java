@@ -254,7 +254,7 @@ public class LopHocChiTietController {
                         row.createCell(4).setCellValue(lop_hoc.getKhoaHoc().getNgay_ket_thuc().toString());
                         row.createCell(5).setCellValue(lop_hoc.getSySo());
                     }
-                    File f = new File("../danh_sach_lop_hoc.xlsx");
+                    File f = new File("./danh_sach_lop_hoc.xlsx");
                     try {
                         out = new FileOutputStream(f);
                     } catch (FileNotFoundException ex) {

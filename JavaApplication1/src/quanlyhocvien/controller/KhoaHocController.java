@@ -246,7 +246,7 @@ public class KhoaHocController {
                         row.createCell(4).setCellValue(khoa_hoc.getNgay_bat_dau().toString());
                         row.createCell(5).setCellValue(khoa_hoc.getNgay_ket_thuc().toString());
                     }
-                    File f = new File("../khoa_hoc.xlsx");
+                    File f = new File("./khoa_hoc.xlsx");
                     try {
                         out = new FileOutputStream(f);
                     } catch (FileNotFoundException ex) {

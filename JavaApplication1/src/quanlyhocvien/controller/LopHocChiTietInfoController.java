@@ -365,7 +365,7 @@ public class LopHocChiTietInfoController {
                         }
                     }
 
-                    File f = new File("../" + lopHoc.getKhoaHoc().getTen_khoa_hoc() + " - " + lopHoc.getLich_hoc() + ".xlsx");
+                    File f = new File("./" + lopHoc.getKhoaHoc().getTen_khoa_hoc() + " - " + lopHoc.getLich_hoc() + ".xlsx");
                     try {
                         out = new FileOutputStream(f);
                     } catch (FileNotFoundException ex) {

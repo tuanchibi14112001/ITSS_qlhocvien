@@ -257,7 +257,7 @@ public class HocVienController {
                         row.createCell(4).setCellValue(hoc_vien.getSo_dien_thoai());
                         row.createCell(5).setCellValue(hoc_vien.getEmail());
                     }
-                    File f = new File("../hoc_vien.xlsx");
+                    File f = new File("./hoc_vien.xlsx");
                     try {
                         out = new FileOutputStream(f);
                     } catch (FileNotFoundException ex) {
