@@ -76,7 +76,15 @@ public class LopHocInfoController {
             public void mouseClicked(MouseEvent e) {
                 KhoaHoc khoa_hoc = new KhoaHoc();
                 String s = (String) jlist_khoahoc.getSelectedValue();
-                khoa_hoc.setMa_khoa_hoc(Integer.parseInt(s.substring(0, 1)));
+//                String[] words = s.split(".");
+//                for (String w : words) {
+//                    System.out.println(w);
+//                }
+                
+                
+                System.out.println();
+                
+                khoa_hoc.setMa_khoa_hoc(Integer.parseInt(s.substring(0, s.indexOf('.'))));
                 lop_hoc.setKhoaHoc(khoa_hoc);
                 lop_hoc.setLich_hoc((String) jlist_lichhoc.getSelectedValue());
                 lop_hoc.setTinh_trang(jcb_tinhtrang.isSelected());
